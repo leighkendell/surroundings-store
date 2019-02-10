@@ -1,0 +1,21 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier", "tslint-react-a11y"],
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  },
+  "rules": {
+    "prettier": [true, {
+      "trailingComma": "es5",
+      "singleQuote": true,
+      "printWidth": 120
+    }],
+    "interface-name": [true, "never-prefix"],
+    "no-console": [false],
+    "jsx-no-lambda": [false],
+    "object-literal-sort-keys": false
+  }
+}

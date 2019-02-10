@@ -1,0 +1,35 @@
+{
+  "name": "with-typescript",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc",
+    "defaults": "webpack-defaults"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.24",
+    "@zeit/next-typescript": "^1.1.1",
+    "apollo-boost": "^0.1.27",
+    "graphql": "^14.1.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^7.0.2",
+    "react": "^16.8.1",
+    "react-apollo": "^2.4.1",
+    "react-dom": "^16.8.1"
+  },
+  "devDependencies": {
+    "@types/next": "^7.0.9",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "16.8.0",
+    "prettier": "^1.16.4",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^3.6.0",
+    "tslint-react-a11y": "^1.0.0",
+    "typescript": "3.3.3"
+  },
+  "license": "ISC"
+}
