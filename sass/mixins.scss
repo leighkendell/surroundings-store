@@ -1,0 +1,15 @@
+@import './variables.scss';
+
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+// Breakpoint
+@mixin breakpoint($point, $type: min-width) {
+  // The breakpoint value
+  $value: map-get($breakpoints, $point);
+
+  @media ($type: $value) {
+    @content;
+  }
+}

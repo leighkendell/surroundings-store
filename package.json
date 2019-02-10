@@ -24,26 +24,27 @@
     "react-dom": "^16.8.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@storybook/addon-actions": "^4.1.11",
+    "@storybook/addon-links": "^4.1.11",
+    "@storybook/addons": "^4.1.11",
+    "@storybook/react": "^4.1.11",
     "@types/next": "^7.0.9",
     "@types/react": "^16.8.2",
     "@types/react-dom": "16.8.0",
+    "babel-loader": "^8.0.5",
     "fork-ts-checker-webpack-plugin": "^0.5.2",
     "prettier": "^1.16.4",
     "stylelint": "^9.10.1",
     "stylelint-config-property-sort-order-smacss": "^4.0.2",
     "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.5.3",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^3.6.0",
     "tslint-react-a11y": "^1.0.0",
-    "typescript": "3.3.3",
-    "@storybook/react": "^4.1.11",
-    "@storybook/addon-actions": "^4.1.11",
-    "@storybook/addon-links": "^4.1.11",
-    "@storybook/addons": "^4.1.11",
-    "@babel/core": "^7.2.2",
-    "babel-loader": "^8.0.5"
+    "typescript": "3.3.3"
   },
   "license": "ISC"
 }

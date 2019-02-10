@@ -1,7 +1,8 @@
 import React from 'react';
+import { Layout } from '../components';
 
 const IndexPage: React.FunctionComponent = () => {
-  return <p>hellzzo</p>;
+  return <Layout>hellzzo</Layout>;
 };
 
 export default IndexPage;
