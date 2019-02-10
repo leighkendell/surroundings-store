@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 const IndexPage: React.FunctionComponent = () => {
-  return <p>hello</p>;
+  return <p>hellzzo</p>;
 };
 
 export default IndexPage;
