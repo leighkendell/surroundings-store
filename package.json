@@ -6,16 +6,18 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "defaults": "webpack-defaults"
+    "defaults": "webpack-defaults",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@types/node": "^10.12.24",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.1.27",
     "graphql": "^14.1.1",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^7.0.2",
+    "next": "^7.0.3",
+    "next-offline": "^3.3.5",
     "node-sass": "^4.11.0",
     "react": "^16.8.1",
     "react-apollo": "^2.4.1",
@@ -35,7 +37,13 @@
     "tslint-plugin-prettier": "^2.0.1",
     "tslint-react": "^3.6.0",
     "tslint-react-a11y": "^1.0.0",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3",
+    "@storybook/react": "^4.1.11",
+    "@storybook/addon-actions": "^4.1.11",
+    "@storybook/addon-links": "^4.1.11",
+    "@storybook/addons": "^4.1.11",
+    "@babel/core": "^7.2.2",
+    "babel-loader": "^8.0.5"
   },
   "license": "ISC"
 }
