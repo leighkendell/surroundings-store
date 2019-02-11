@@ -13,8 +13,16 @@ $color-blue: #2851dc;
 // Breakpoints
 // ==========================================================================
 $breakpoints: (
-  small: 300px,
-  medium: 600px,
-  large: 1000px,
-  x-large: 1200px
+  small: 375px,
+  medium: 700px,
+  large: 975px,
+  x-large: 1170px
 );
+
+// Sizing
+// ==========================================================================
+$nav-small: 70px;
+$nav-large: 100px;
+$spacing-small: 20px;
+$spacing-medium: 40px;
+$spacing-large: 80px;
