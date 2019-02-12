@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
-import { NavToggle } from '..';
+import { NavList, NavListItem, NavToggle } from '..';
 import getNavigationQuery from '../../graphql/getNavigation';
 import updateNavigationMutation from '../../graphql/updateNavigation';
 import Logo from '../../svg/surroundings-logo.svg';
@@ -16,10 +16,18 @@ const Nav: React.FunctionComponent = () => (
           <div className={styles.wrapper}>
             <Mutation mutation={updateNavigationMutation}>
               {updateNavigation => (
-                <NavToggle open={isOpen} onClick={() => updateNavigation({ variables: { isOpen: !isOpen } })} />
+                <>
+                  <NavToggle open={isOpen} onClick={() => updateNavigation({ variables: { isOpen: !isOpen } })} />
+                  <Logo className={styles.logo} />
+                  <NavList open={isOpen}>
+                    <NavListItem>Home</NavListItem>
+                    <NavListItem>Clothing</NavListItem>
+                    <NavListItem>Music</NavListItem>
+                    <NavListItem>Contact</NavListItem>
+                  </NavList>
+                </>
               )}
             </Mutation>
-            <Logo className={styles.logo} />
           </div>
         </nav>
       );

@@ -1,0 +1,39 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.navList {
+  display: flex;
+  visibility: hidden;
+  position: fixed;
+  z-index: -1;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - #{$nav-small});
+  margin: 0;
+  padding: $spacing-small;
+  transform: translateY(0);
+  transition: 0.35s ease-in-out;
+  background-color: $color-white;
+  text-align: center;
+
+  @include breakpoint(medium) {
+    visibility: visible;
+    position: static;
+    z-index: 1;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    padding: 0;
+    transform: none;
+    transition: none;
+  }
+}
+
+.navListOpen {
+  visibility: visible;
+  transform: translateY(-100%);
+}

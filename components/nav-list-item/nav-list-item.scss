@@ -1,0 +1,22 @@
+@import '../../sass/variables';
+
+.navListItem {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: block;
+    position: relative;
+    padding: $spacing-small;
+    transition: 0.25s ease;
+    color: currentColor;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-blue;
+    }
+  }
+}
