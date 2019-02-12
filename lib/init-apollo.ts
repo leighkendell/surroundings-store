@@ -1,4 +1,5 @@
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from 'apollo-boost';
+import { withClientState } from 'apollo-link-state';
 import fetch from 'isomorphic-unfetch';
 
 const isBrowser = typeof window !== 'undefined';
@@ -10,18 +11,48 @@ if (!isBrowser) {
 }
 
 const create = (initialState?: any) => {
-  // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
+  const cache = new InMemoryCache().restore(initialState || {});
+
+  const defaults = {
+    navigation: {
+      __typename: 'Navigation',
+      isOpen: false,
+    },
+  };
+
+  const stateLink = withClientState({
+    cache,
+    defaults,
+    resolvers: {
+      Mutation: {
+        updateNavigation: (_, { isOpen }, { cache }) => {
+          const data = {
+            navigation: {
+              __typename: 'Navigation',
+              isOpen,
+            },
+          };
+          cache.writeData({ data });
+          return null;
+        },
+      },
+    },
+  });
+
   return new ApolloClient({
     connectToDevTools: isBrowser,
-    ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
-    link: new HttpLink({
-      uri: 'https://srrndngs.myshopify.com/api/graphql', // Server URL (must be absolute)
-      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`,
-      headers: {
-        'X-Shopify-Storefront-Access-Token': '30727722f2f8fb191b4083f205e6c120',
-      },
-    }),
-    cache: new InMemoryCache().restore(initialState || {}),
+    ssrMode: !isBrowser,
+    link: ApolloLink.from([
+      stateLink,
+      new HttpLink({
+        uri: 'https://srrndngs.myshopify.com/api/graphql',
+        credentials: 'same-origin',
+        headers: {
+          'X-Shopify-Storefront-Access-Token': '30727722f2f8fb191b4083f205e6c120',
+        },
+      }),
+    ]),
+    cache,
   });
 };
 
