@@ -1,9 +1,16 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from './nav-list-item.scss';
 
-const NavListItem: React.FunctionComponent = ({ children }) => (
+interface Props {
+  href: string;
+}
+
+const NavListItem: React.FunctionComponent<Props> = ({ children, href }) => (
   <li className={styles.navListItem}>
-    <a href="">{children}</a>
+    <Link href={href} prefetch={true}>
+      <a>{children}</a>
+    </Link>
   </li>
 );
 
