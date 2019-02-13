@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
-import { NavList, NavListItem, NavToggle } from '..';
+import { CartToggle, NavList, NavListItem, NavToggle } from '..';
 import getNavigationQuery from '../../graphql/getNavigation';
 import updateNavigationMutation from '../../graphql/updateNavigation';
 import Logo from '../../svg/surroundings-logo.svg';
@@ -25,6 +25,7 @@ const Nav: React.FunctionComponent = () => (
                     <NavListItem>Music</NavListItem>
                     <NavListItem>Contact</NavListItem>
                   </NavList>
+                  <CartToggle />
                 </>
               )}
             </Mutation>

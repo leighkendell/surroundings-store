@@ -27,6 +27,7 @@
     flex-direction: row;
     width: auto;
     height: auto;
+    margin-left: auto;
     padding: 0;
     transform: none;
     transition: none;
@@ -36,4 +37,8 @@
 .navListOpen {
   visibility: visible;
   transform: translateY(-100%);
+
+  @include breakpoint(medium) {
+    transform: none;
+  }
 }
