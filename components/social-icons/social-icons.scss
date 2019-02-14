@@ -1,0 +1,17 @@
+@import '../../sass/variables';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+
+  a {
+    display: block;
+    line-height: 0;
+  }
+
+  svg {
+    margin-left: $spacing-small;
+  }
+}

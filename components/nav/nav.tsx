@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
-import { CartToggle, NavList, NavListItem, NavToggle } from '..';
+import { CartToggle, NavList, NavListItem, NavToggle, Wrapper } from '..';
 import getNavigationQuery from '../../graphql/get-navigation';
 import updateNavigationMutation from '../../graphql/update-navigation';
 import Logo from '../../svg/surroundings-logo.svg';
@@ -13,7 +13,7 @@ const Nav: React.FunctionComponent = () => (
 
       return (
         <nav className={styles.nav} role="navigation">
-          <div className={styles.wrapper}>
+          <Wrapper additionalClass={styles.wrapper} collapseTop={true} collapseBottom={true}>
             <Mutation mutation={updateNavigationMutation}>
               {updateNavigation => (
                 <>
@@ -29,7 +29,7 @@ const Nav: React.FunctionComponent = () => (
                 </>
               )}
             </Mutation>
-          </div>
+          </Wrapper>
         </nav>
       );
     }}

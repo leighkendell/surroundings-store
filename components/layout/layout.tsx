@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { Nav } from '..';
+import { Footer, Nav } from '..';
 import './layout.scss';
 
 const Layout: React.FunctionComponent = ({ children }) => (
@@ -12,7 +12,8 @@ const Layout: React.FunctionComponent = ({ children }) => (
       <title>Surroundings - Store</title>
     </Head>
     <Nav />
-    {children}
+    <main>{children}</main>
+    <Footer />
   </>
 );
 

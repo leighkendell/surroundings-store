@@ -4,3 +4,7 @@ export { default as NavToggle } from './nav-toggle/nav-toggle';
 export { default as NavList } from './nav-list/nav-list';
 export { default as NavListItem } from './nav-list-item/nav-list-item';
 export { default as CartToggle } from './cart-toggle/cart-toggle';
+export { default as Wrapper } from './wrapper/wrapper';
+export { default as Section } from './section/section';
+export { default as Footer } from './footer/footer';
+export { default as SocialIcons } from './social-icons/social-icons';

@@ -10,6 +10,15 @@ $color-grey: #f1f1f1;
 $color-yellow: #ffd642;
 $color-blue: #2851dc;
 
+// Contextual
+$color-light: $color-white;
+$color-dark: $color-black;
+$color-text-default: $color-black;
+$color-section-light: $color-white;
+$color-section-dark: $color-black;
+$color-section-primary: $color-blue;
+$color-section-secondary: $color-grey;
+
 // Breakpoints
 // ==========================================================================
 $breakpoints: (

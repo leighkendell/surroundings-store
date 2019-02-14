@@ -1,0 +1,17 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.footer {
+  background-color: $color-dark;
+  color: $color-light;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include breakpoint(large) {
+    padding-top: $spacing-medium;
+    padding-bottom: $spacing-medium;
+  }
+}

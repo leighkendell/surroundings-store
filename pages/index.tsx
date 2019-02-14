@@ -1,8 +1,14 @@
 import React from 'react';
-import { Layout } from '../components';
+import { Layout, Section, Wrapper } from '../components';
 
 const IndexPage: React.FunctionComponent = () => {
-  return <Layout>Home page</Layout>;
+  return (
+    <Layout>
+      <Section>
+        <Wrapper>Home page</Wrapper>
+      </Section>
+    </Layout>
+  );
 };
 
 export default IndexPage;

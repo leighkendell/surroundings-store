@@ -1,0 +1,41 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.wrapper {
+  --max-width: 1280px;
+
+  width: 100%;
+  max-width: calc(#{$spacing-large * 2} + var(--max-width));
+  margin: 0 auto;
+  padding: $spacing-small;
+
+  @include breakpoint(medium) {
+    padding: $spacing-medium;
+  }
+
+  @include breakpoint(large) {
+    padding: $spacing-large;
+  }
+
+  > * {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.wrapperSmall {
+  --max-width: 800px;
+}
+
+.collapseBottom {
+  padding-bottom: 0;
+}
+
+.collapseTop {
+  padding-top: 0;
+}
