@@ -1,4 +1,5 @@
-@import './variables.scss';
+@import './variables';
+@import './functions';
 
 // ==========================================================================
 // Mixins
@@ -11,5 +12,34 @@
 
   @media ($type: $value) {
     @content;
+  }
+}
+
+// Fluid typography
+// ==========================================================================
+@mixin fluidtype($font-min: 13px, $font-max: 18px, $screen-min: 400px, $screen-max: 1000px) {
+  font-size: $font-min;
+  $fontunit: unquote(unit($font-min));
+  $screenunit: unquote(unit($screen-min));
+
+  @if ($screenunit != 'px') {
+    @error('fluidfont: $screen-min and $screen-max must be in px');
+  }
+
+  @if ($fontunit != 'px' and $fontunit != 'rem' ) {
+    @error('fluidfont: $font-min and $font-max must be in px, or rem');
+  }
+
+  @if ($fontunit != 'px') {
+    $screen-max: strip-unit($screen-max) / strip-unit($font-size-base) * 1rem;
+    $screen-min: strip-unit($screen-min) / strip-unit($font-size-base) * 1rem;
+  }
+
+  @media (min-width: $screen-min) {
+    font-size: calc(#{$font-min} + (#{strip-unit($font-max)} - #{strip-unit($font-min)}) * (100vw - #{$screen-min}) / (#{strip-unit($screen-max)} - #{strip-unit($screen-min)}));
+  }
+
+  @media (min-width: $screen-max) {
+    font-size: $font-max;
   }
 }

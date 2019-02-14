@@ -1,4 +1,5 @@
 @import '../../sass/normalize';
+@import '../../sass//variables';
 
 // ==========================================================================
 // Global Styles
@@ -22,5 +23,8 @@ html {
 // Typography
 // ==========================================================================
 body {
+  color: $color-text-default;
   font-family: proxima-nova, sans-serif;
+  font-size: $font-size-base;
+  line-height: 1.4;
 }

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Layout } from '../components';
+import { HeaderText, Layout } from '../components';
 
 const ContactPage: React.FunctionComponent = () => {
-  return <Layout>Contact page</Layout>;
+  return (
+    <Layout>
+      <HeaderText>Contact</HeaderText>
+    </Layout>
+  );
 };
 
 export default ContactPage;

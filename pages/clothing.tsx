@@ -1,8 +1,12 @@
 import React from 'react';
-import { Layout } from '../components';
+import { HeaderText, Layout } from '../components';
 
 const ClothingPage: React.FunctionComponent = () => {
-  return <Layout>Clothing page</Layout>;
+  return (
+    <Layout>
+      <HeaderText>Clothing</HeaderText>
+    </Layout>
+  );
 };
 
 export default ClothingPage;

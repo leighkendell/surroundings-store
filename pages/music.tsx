@@ -1,8 +1,12 @@
 import React from 'react';
-import { Layout } from '../components';
+import { HeaderText, Layout } from '../components';
 
 const MusicPage: React.FunctionComponent = () => {
-  return <Layout>Music page</Layout>;
+  return (
+    <Layout>
+      <HeaderText>Music</HeaderText>
+    </Layout>
+  );
 };
 
 export default MusicPage;
