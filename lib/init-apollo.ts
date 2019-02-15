@@ -11,7 +11,7 @@ if (!isBrowser) {
 }
 
 const create = (initialState?: any) => {
-  const cache = new InMemoryCache().restore(initialState || {});
+  const appCache = new InMemoryCache().restore(initialState || {});
 
   const defaults = {
     navigation: {
@@ -21,7 +21,7 @@ const create = (initialState?: any) => {
   };
 
   const stateLink = withClientState({
-    cache,
+    cache: appCache,
     defaults,
     resolvers: {
       Mutation: {
@@ -52,7 +52,7 @@ const create = (initialState?: any) => {
         },
       }),
     ]),
-    cache,
+    cache: appCache,
   });
 };
 

@@ -1,18 +1,25 @@
 import React from 'react';
 import styles from './heading.scss';
 
-interface Props {
+interface Props extends React.HtmlHTMLAttributes<HTMLHeadingElement> {
   type: 'h1' | 'h2' | 'h3';
 }
 
-const Heading: React.FunctionComponent<Props> = ({ type, children }) => {
-  const Tag = type;
+class Heading extends React.PureComponent<Props> {
+  public static defaultProps = {
+    type: 'h1',
+  };
 
-  return <Tag className={styles[type]}>{children}</Tag>;
-};
+  public render() {
+    const { type, children, style } = this.props;
+    const Tag = type;
 
-Heading.defaultProps = {
-  type: 'h1',
-};
+    return (
+      <Tag className={styles[type]} style={style}>
+        {children}
+      </Tag>
+    );
+  }
+}
 
 export default Heading;
