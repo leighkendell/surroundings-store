@@ -4,7 +4,7 @@ import { Heading, Section, Wrapper } from '..';
 
 const HeaderText: React.FunctionComponent = ({ children }) => {
   const props = useSpring({
-    from: { opacity: 0, transform: 'translateX(-50px)' },
+    from: { opacity: 0, transform: 'translateX(-25px)' },
     to: { opacity: 1, transform: 'translateX(0)' },
   });
 

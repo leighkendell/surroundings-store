@@ -10,3 +10,4 @@ export { default as Footer } from './footer/footer';
 export { default as SocialIcons } from './social-icons/social-icons';
 export { default as Heading } from './heading/heading';
 export { default as HeaderText } from './header-text/header-text';
+export { default as Button } from './button/button';

@@ -1,0 +1,43 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.button {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 18px 30px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 50px;
+  outline: 0;
+  background-color: $color-button-bg-default;
+  color: $color-light;
+  font-size: $font-size-default / 1.15;
+  cursor: pointer;
+
+  &::before {
+    --translateX: 100%;
+    --opacity: 0;
+    --scale: 0.5;
+
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    transform: translateX(var(--translateX)) scale(var(--scale));
+    transition: 0.2s ease-in-out;
+    border-radius: 100%;
+    opacity: var(--opacity);
+    background-color: darken($color-button-bg-default, 25%);
+  }
+
+  &:hover::before {
+    --translateX: 0;
+    --opacity: 1;
+    --scale: 1.25;
+  }
+}

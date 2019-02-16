@@ -1,10 +1,11 @@
 import React from 'react';
-import { HeaderText, Layout } from '../components';
+import { Button, HeaderText, Layout } from '../components';
 
 const IndexPage: React.FunctionComponent = () => {
   return (
     <Layout>
       <HeaderText>Store home</HeaderText>
+      <Button>View product</Button>
     </Layout>
   );
 };

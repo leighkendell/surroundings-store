@@ -25,14 +25,12 @@
   }
 
   &.navListItemActive {
-    color: $color-blue;
-
     @include breakpoint(medium) {
       color: currentColor;
 
       &::before {
         transform: translateY(0);
-        background-color: $color-blue;
+        background-color: $color-dark;
       }
     }
   }
