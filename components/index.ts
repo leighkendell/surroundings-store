@@ -11,3 +11,6 @@ export { default as SocialIcons } from './social-icons/social-icons';
 export { default as Heading } from './heading/heading';
 export { default as HeaderText } from './header-text/header-text';
 export { default as Button } from './button/button';
+export { default as ProductCard } from './product-card/product-card';
+export { default as ProductGrid } from './product-grid/product-grid';
+export { default as Products } from './products/products';

@@ -1,0 +1,27 @@
+@import '../../sass/variables';
+
+.card {
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: $color-light;
+  box-shadow: 0 2px 4px rgba($color-dark, 0.02), 0 5px 15px rgba($color-dark, 0.15);
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.content {
+  padding: $spacing-small;
+}
+
+.title,
+.price {
+  display: block;
+}
+
+.price {
+  margin-bottom: $spacing-small;
+}

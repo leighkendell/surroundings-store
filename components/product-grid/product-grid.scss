@@ -1,0 +1,12 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.grid {
+  display: grid;
+  grid-gap: $spacing-small;
+
+  @include breakpoint(medium) {
+    grid-gap: $spacing-medium;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
