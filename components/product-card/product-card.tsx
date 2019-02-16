@@ -13,7 +13,9 @@ interface Props {
 
 const ProductCard: React.FunctionComponent<Props> = ({ title, price, image }) => (
   <div className={styles.card}>
-    <img className={styles.image} src={image.src} alt={image.alt} />
+    <div className={styles.image}>
+      <img src={image.src} alt={image.alt} />
+    </div>
     <div className={styles.content}>
       <span className={styles.title}>{title}</span>
       <strong className={styles.price}>{price}</strong>
