@@ -28,7 +28,7 @@ const Products: React.FunctionComponent<Props> = ({ handle }) => (
             <Wrapper collapseTop={true}>
               <ProductGrid>
                 {products.map(({ node }) => {
-                  const { id, title } = node;
+                  const { id, title, handle: path } = node;
                   const { amount, currencyCode } = node.priceRange.minVariantPrice;
                   const [mainImage] = node.images.edges;
                   const image = {
@@ -37,7 +37,7 @@ const Products: React.FunctionComponent<Props> = ({ handle }) => (
                   };
                   const price = formatCurrency(currencyCode, amount);
 
-                  return <ProductCard key={id} title={title} price={price} image={image} />;
+                  return <ProductCard key={id} path={path} title={title} price={price} image={image} />;
                 })}
               </ProductGrid>
             </Wrapper>
