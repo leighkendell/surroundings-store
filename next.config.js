@@ -1,17 +1,27 @@
-const withTypescript = require('@zeit/next-typescript');
-const withSass = require('@zeit/next-sass');
+const typescript = require('@zeit/next-typescript');
+const sass = require('@zeit/next-sass');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const withPlugins = require('next-compose-plugins');
 
-module.exports = withTypescript(withSass({
-  cssModules: true,
-  webpack(config, options) {
+const nextConfig = {
+  webpack: (config, options) => {
     // Do not run type checking twice:
     if (options.isServer) {
       config.plugins.push(new ForkTsCheckerWebpackPlugin({
         tslint: './tslint.json',
       }));
     }
-
     return config
   }
-}));
+};
+
+module.exports = withPlugins([
+  [sass, {
+    cssLoaderOptions: {
+      importLoaders: 1,
+      localIdentName: '[name]__[local]:[hash:base64:5]',
+    },
+    cssModules: true,
+  }],
+  [typescript]
+], nextConfig);
