@@ -6,10 +6,10 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   open?: boolean;
 }
 
-const NavToggle: React.FunctionComponent<Props> = ({ open, ...props }) => {
+const NavToggle: React.FunctionComponent<Props> = React.memo(({ open, ...props }) => {
   const className = classNames(styles.navToggle, { [styles.navToggleOpen]: open });
 
   return <button className={className} {...props} />;
-};
+});
 
 export default NavToggle;
