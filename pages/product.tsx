@@ -1,7 +1,7 @@
 import { SingletonRouter, withRouter } from 'next/router';
 import React from 'react';
 import { Query } from 'react-apollo';
-import { HeaderText, Layout } from '../components';
+import { Button, ContentCard, HeaderText, Heading, Layout, Section, Text, Wrapper } from '../components';
 import getProduct from '../graphql/get-product';
 
 interface Props {
@@ -26,7 +26,20 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
           if (data) {
             const { title } = data.productByHandle;
 
-            return <HeaderText>{title}</HeaderText>;
+            return (
+              <>
+                <HeaderText>{title}</HeaderText>
+                <Section variation="secondary">
+                  <Wrapper>
+                    <ContentCard>
+                      <Heading type="h2">Product details</Heading>
+                      <Text>Natural process soft ink print with a black logo on a dark grey shirt.</Text>
+                      <Button>Add to cart</Button>
+                    </ContentCard>
+                  </Wrapper>
+                </Section>
+              </>
+            );
           }
         }}
       </Query>

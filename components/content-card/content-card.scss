@@ -1,0 +1,19 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.card {
+  @include card-shadow;
+
+  padding: $spacing-small;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: $color-light;
+
+  @include breakpoint(medium) {
+    padding: $spacing-medium;
+  }
+
+  @include breakpoint(large) {
+    padding: $spacing-large;
+  }
+}

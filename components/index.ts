@@ -14,3 +14,5 @@ export { default as Button } from './button/button';
 export { default as ProductCard } from './product-card/product-card';
 export { default as ProductGrid } from './product-grid/product-grid';
 export { default as Products } from './products/products';
+export { default as ContentCard } from './content-card/content-card';
+export { default as Text } from './text/text';
