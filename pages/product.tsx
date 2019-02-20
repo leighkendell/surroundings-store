@@ -24,16 +24,19 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
           }
 
           if (data) {
-            const { title } = data.productByHandle;
+            const { title, description, images } = data.productByHandle;
 
             return (
               <>
                 <HeaderText>{title}</HeaderText>
                 <Section variation="secondary">
                   <Wrapper>
+                    {images.edges.map(({ node }) => (
+                      <img key={node.id} src={node.transformedSrc} alt={node.altText || title} />
+                    ))}
                     <ContentCard>
                       <Heading type="h2">Product details</Heading>
-                      <Text>Natural process soft ink print with a black logo on a dark grey shirt.</Text>
+                      <Text>{description}</Text>
                       <Button>Add to cart</Button>
                     </ContentCard>
                   </Wrapper>
