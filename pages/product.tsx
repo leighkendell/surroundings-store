@@ -1,8 +1,20 @@
 import { SingletonRouter, withRouter } from 'next/router';
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Button, ContentCard, HeaderText, Heading, Layout, Section, Text, Wrapper } from '../components';
+import {
+  Button,
+  HeaderText,
+  HeaderTextGroup,
+  InputSelect,
+  Layout,
+  ProductDetailsGrid,
+  ProductDetailsGridItem,
+  ProductImage,
+  Section,
+  Text,
+} from '../components';
 import getProduct from '../graphql/get-product';
+import { formatCurrency } from '../lib/helpers';
 
 interface Props {
   router: SingletonRouter;
@@ -24,24 +36,32 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
           }
 
           if (data) {
-            const { title, description, images } = data.productByHandle;
+            const { title, description, images, variants, priceRange } = data.productByHandle;
+            const { amount, currencyCode } = priceRange.minVariantPrice;
+            const price = formatCurrency(currencyCode, amount);
 
             return (
-              <>
-                <HeaderText>{title}</HeaderText>
-                <Section variation="secondary">
-                  <Wrapper>
+              <Section>
+                <ProductDetailsGrid>
+                  <ProductDetailsGridItem>
                     {images.edges.map(({ node }) => (
-                      <img key={node.id} src={node.transformedSrc} alt={node.altText || title} />
+                      <ProductImage key={node.id} src={node.transformedSrc} alt={node.altText || title} />
                     ))}
-                    <ContentCard>
-                      <Heading type="h2">Product details</Heading>
-                      <Text>{description}</Text>
-                      <Button>Add to cart</Button>
-                    </ContentCard>
-                  </Wrapper>
-                </Section>
-              </>
+                  </ProductDetailsGridItem>
+                  <ProductDetailsGridItem>
+                    <HeaderTextGroup firstHeading={title} secondHeading={price} />
+                    <Text>{description}</Text>
+                    <InputSelect>
+                      {variants.edges.map(variant => (
+                        <option key={variant.node.id} value={variant.node.id}>
+                          {variant.node.title}
+                        </option>
+                      ))}
+                    </InputSelect>
+                    <Button>Add to cart</Button>
+                  </ProductDetailsGridItem>
+                </ProductDetailsGrid>
+              </Section>
             );
           }
         }}

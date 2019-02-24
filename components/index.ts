@@ -16,3 +16,8 @@ export { default as ProductGrid } from './product-grid/product-grid';
 export { default as Products } from './products/products';
 export { default as ContentCard } from './content-card/content-card';
 export { default as Text } from './text/text';
+export { default as InputSelect } from './input-select/input-select';
+export { default as HeaderTextGroup } from './header-text-group/header-text-group';
+export { default as ProductImage } from './product-image/product-image';
+export { default as ProductDetailsGrid } from './product-details-grid/product-details-grid';
+export { default as ProductDetailsGridItem } from './product-details-grid-item/product-details-grid-item';

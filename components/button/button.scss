@@ -5,7 +5,7 @@
   display: inline-block;
   position: relative;
   z-index: 1;
-  padding: 18px 30px;
+  padding: 1.2em 2.5em;
   overflow: hidden;
   border: 0;
   border-radius: 50px;
@@ -13,6 +13,7 @@
   background-color: $color-button-bg-default;
   color: $color-light;
   font-size: $font-size-default / 1.15;
+  font-weight: bold;
   cursor: pointer;
 
   &::before {

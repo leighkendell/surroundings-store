@@ -1,6 +1,7 @@
 const typescript = require('@zeit/next-typescript');
 const sass = require('@zeit/next-sass');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const optimizedImages = require('next-optimized-images');
 const withPlugins = require('next-compose-plugins');
 
 const nextConfig = {
@@ -23,5 +24,6 @@ module.exports = withPlugins([
     },
     cssModules: true,
   }],
-  [typescript]
+  [typescript],
+  [optimizedImages],
 ], nextConfig);

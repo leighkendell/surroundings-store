@@ -5,6 +5,12 @@ export default gql`
     productByHandle(handle: $handle) {
       id
       title
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
       description
       images(first: 1) {
         edges {

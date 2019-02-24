@@ -13,6 +13,7 @@ $color-blue: #2851dc;
 // Contextual
 $color-light: $color-white;
 $color-dark: $color-black;
+$color-border: lighten($color-black, 80%);
 $color-text-default: $color-black;
 $color-button-bg-default: $color-blue;
 $color-button-text-default: $color-white;

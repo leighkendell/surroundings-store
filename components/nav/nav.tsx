@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
 import { CartToggle, NavList, NavListItem, NavToggle, Wrapper } from '..';
@@ -18,7 +19,11 @@ const Nav: React.FunctionComponent = () => (
               {updateNavigation => (
                 <>
                   <NavToggle open={isOpen} onClick={() => updateNavigation({ variables: { isOpen: !isOpen } })} />
-                  <Logo className={styles.logo} />
+                  <Link href="/">
+                    <a className={styles.logo} aria-label="Link to home page">
+                      <Logo />
+                    </a>
+                  </Link>
                   <NavList open={isOpen}>
                     <NavListItem href="/">Home</NavListItem>
                     <NavListItem href="/clothing">Clothing</NavListItem>
