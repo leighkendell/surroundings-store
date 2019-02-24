@@ -15,6 +15,8 @@
 
     // Image
     &:first-child {
+      background-color: var(--theme);
+
       @include breakpoint(medium) {
         grid-column: 2 / 3;
       }

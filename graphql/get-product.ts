@@ -12,12 +12,13 @@ export default gql`
         }
       }
       description
+      tags
       images(first: 1) {
         edges {
           node {
             id
             altText
-            transformedSrc(maxWidth: 500, scale: 2, preferredContentType: WEBP)
+            transformedSrc(maxWidth: 560, scale: 2, preferredContentType: WEBP)
           }
         }
       }

@@ -14,7 +14,7 @@ import {
   Text,
 } from '../components';
 import getProduct from '../graphql/get-product';
-import { formatCurrency } from '../lib/helpers';
+import { formatCurrency, getTheme } from '../lib/helpers';
 
 interface Props {
   router: SingletonRouter;
@@ -36,13 +36,14 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
           }
 
           if (data) {
-            const { title, description, images, variants, priceRange } = data.productByHandle;
+            const { title, description, images, variants, priceRange, tags } = data.productByHandle;
             const { amount, currencyCode } = priceRange.minVariantPrice;
             const price = formatCurrency(currencyCode, amount);
+            const theme = getTheme(tags);
 
             return (
               <Section>
-                <ProductDetailsGrid>
+                <ProductDetailsGrid theme={theme}>
                   <ProductDetailsGridItem>
                     {images.edges.map(({ node }) => (
                       <ProductImage key={node.id} src={node.transformedSrc} alt={node.altText || title} />

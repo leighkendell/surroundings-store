@@ -9,6 +9,7 @@ export default gql`
             handle
             id
             title
+            tags
             priceRange {
               minVariantPrice {
                 amount

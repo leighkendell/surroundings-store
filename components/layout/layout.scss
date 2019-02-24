@@ -39,3 +39,13 @@ body {
   font-size: $font-size-base;
   line-height: 1.4;
 }
+
+// Theming
+// ==========================================================================
+:root {
+  --theme-1: #86e2ef;
+  --theme-2: #fab74d;
+  --theme-3: #4c575c;
+  --theme-4: #00bfb2;
+  --theme-5: #474056;
+}

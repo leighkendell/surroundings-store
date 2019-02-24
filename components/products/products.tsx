@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { ProductCard, ProductGrid, Section } from '..';
 import getProductCards from '../../graphql/get-product-cards';
-import { formatCurrency } from '../../lib/helpers';
+import { formatCurrency, getTheme } from '../../lib/helpers';
 import Wrapper from '../wrapper/wrapper';
 
 interface Props {
@@ -28,7 +28,7 @@ const Products: React.FunctionComponent<Props> = ({ handle }) => (
             <Wrapper collapseTop={true}>
               <ProductGrid>
                 {products.map(({ node }) => {
-                  const { id, title, handle: path } = node;
+                  const { id, title, handle: path, tags } = node;
                   const { amount, currencyCode } = node.priceRange.minVariantPrice;
                   const [mainImage] = node.images.edges;
                   const image = {
@@ -36,8 +36,9 @@ const Products: React.FunctionComponent<Props> = ({ handle }) => (
                     alt: mainImage ? mainImage.node.altText : '',
                   };
                   const price = formatCurrency(currencyCode, amount);
+                  const theme = getTheme(tags);
 
-                  return <ProductCard key={id} path={path} title={title} price={price} image={image} />;
+                  return <ProductCard key={id} path={path} title={title} price={price} image={image} theme={theme} />;
                 })}
               </ProductGrid>
             </Wrapper>

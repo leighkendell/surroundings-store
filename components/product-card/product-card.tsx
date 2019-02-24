@@ -7,15 +7,16 @@ interface Props {
   title: string;
   price: string;
   path: string;
+  theme?: string;
   image: {
     src: string;
     alt: string;
   };
 }
 
-const ProductCard: React.FunctionComponent<Props> = ({ title, price, image, path }) => (
+const ProductCard: React.FunctionComponent<Props> = ({ title, price, image, path, theme }) => (
   <Link href={`/product?handle=${path}&title=${title}`} as={`/product/${path}`}>
-    <a className={styles.card}>
+    <a className={styles.card} style={{ '--theme': `var(--${theme})` }}>
       <div className={styles.image}>
         <img src={image.src} alt={image.alt} />
       </div>
@@ -27,5 +28,9 @@ const ProductCard: React.FunctionComponent<Props> = ({ title, price, image, path
     </a>
   </Link>
 );
+
+ProductCard.defaultProps = {
+  theme: 'theme-1',
+};
 
 export default ProductCard;
