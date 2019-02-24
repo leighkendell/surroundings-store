@@ -21,3 +21,4 @@ export { default as HeaderTextGroup } from './header-text-group/header-text-grou
 export { default as ProductImage } from './product-image/product-image';
 export { default as ProductDetailsGrid } from './product-details-grid/product-details-grid';
 export { default as ProductDetailsGridItem } from './product-details-grid-item/product-details-grid-item';
+export { default as AnimatedHeading } from './animated-heading/animated-heading';
