@@ -2,16 +2,18 @@
 @import '../../sass/mixins';
 
 .footer {
+  display: flex;
+  align-items: center;
+  height: $nav-small;
   background-color: $color-dark;
   color: $color-light;
+
+  @include breakpoint(medium) {
+    height: $nav-large;
+  }
 }
 
 .wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-
-  @include breakpoint(large) {
-    padding-top: $spacing-medium;
-    padding-bottom: $spacing-medium;
-  }
 }

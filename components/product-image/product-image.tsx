@@ -7,7 +7,9 @@ interface Props {
 }
 
 const ProductImage: React.FunctionComponent<Props> = ({ src, alt }) => (
-  <img src={src} alt={alt} className={styles.image} />
+  <div className={styles.wrapper}>
+    <img src={src} alt={alt} className={styles.image} />
+  </div>
 );
 
 export default ProductImage;
