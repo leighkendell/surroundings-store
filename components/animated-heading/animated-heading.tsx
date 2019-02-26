@@ -2,9 +2,9 @@ import React from 'react';
 import { animated, useSpring } from 'react-spring';
 import { Heading } from '..';
 
-const SpringHeading = animated(Heading);
-
 const AnimatedHeading: React.FunctionComponent = ({ children }) => {
+  const SpringHeading = animated(Heading);
+
   const props = useSpring({
     from: { opacity: 0, transform: 'translateX(-25px)' },
     to: { opacity: 1, transform: 'translateX(0)' },

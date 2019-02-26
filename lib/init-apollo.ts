@@ -12,12 +12,22 @@ if (!isBrowser) {
 
 const create = (initialState?: any) => {
   const appCache = new InMemoryCache().restore(initialState || {});
+  let initialCheckout = null;
+
+  if (isBrowser) {
+    initialCheckout = JSON.parse(window.localStorage.getItem('shopify-checkout'));
+  }
 
   const defaults = {
     navigation: {
       __typename: 'Navigation',
       isOpen: false,
     },
+    cart: {
+      __typename: 'Cart',
+      isOpen: false,
+    },
+    checkout: initialCheckout,
   };
 
   const stateLink = withClientState({
@@ -31,6 +41,13 @@ const create = (initialState?: any) => {
               __typename: 'Navigation',
               isOpen,
             },
+          };
+          cache.writeData({ data });
+          return null;
+        },
+        updateCheckout: (_, { checkout }, { cache }) => {
+          const data = {
+            checkout,
           };
           cache.writeData({ data });
           return null;

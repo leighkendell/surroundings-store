@@ -1,6 +1,5 @@
 import React from 'react';
-import { Section, Wrapper } from '..';
-import { AnimatedHeading } from '..';
+import { AnimatedHeading, Section, Wrapper } from '..';
 
 const HeaderText: React.FunctionComponent = ({ children }) => {
   return (
