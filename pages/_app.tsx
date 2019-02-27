@@ -51,7 +51,7 @@ class MainApp extends App<MainAppProps> {
         mutation: updateCheckout,
         variables: { checkout },
       });
-      window.localStorage.setItem('shopify-checkout', JSON.stringify(checkout));
+      localStorage.setItem('shopify-checkout', JSON.stringify(checkout));
     } catch {
       // TODO: Error handling
     }

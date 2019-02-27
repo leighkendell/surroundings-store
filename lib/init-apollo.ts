@@ -1,5 +1,4 @@
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from 'apollo-boost';
-import { withClientState } from 'apollo-link-state';
+import { ApolloClient, gql, HttpLink, InMemoryCache } from 'apollo-boost';
 import fetch from 'isomorphic-unfetch';
 
 const isBrowser = typeof window !== 'undefined';
@@ -12,27 +11,19 @@ if (!isBrowser) {
 
 const create = (initialState?: any) => {
   const appCache = new InMemoryCache().restore(initialState || {});
-  let initialCheckout = null;
+  const initialCheckout = isBrowser ? JSON.parse(localStorage.getItem('shopify-checkout')) : null;
 
-  if (isBrowser) {
-    initialCheckout = JSON.parse(window.localStorage.getItem('shopify-checkout'));
-  }
-
-  const defaults = {
-    navigation: {
-      __typename: 'Navigation',
-      isOpen: false,
-    },
-    cart: {
-      __typename: 'Cart',
-      isOpen: false,
-    },
-    checkout: initialCheckout,
-  };
-
-  const stateLink = withClientState({
+  const client = new ApolloClient({
+    connectToDevTools: isBrowser,
+    ssrMode: !isBrowser,
     cache: appCache,
-    defaults,
+    link: new HttpLink({
+      uri: 'https://srrndngs.myshopify.com/api/graphql',
+      credentials: 'same-origin',
+      headers: {
+        'X-Shopify-Storefront-Access-Token': '30727722f2f8fb191b4083f205e6c120',
+      },
+    }),
     resolvers: {
       Mutation: {
         updateNavigation: (_, { isOpen }, { cache }) => {
@@ -56,21 +47,21 @@ const create = (initialState?: any) => {
     },
   });
 
-  return new ApolloClient({
-    connectToDevTools: isBrowser,
-    ssrMode: !isBrowser,
-    link: ApolloLink.from([
-      stateLink,
-      new HttpLink({
-        uri: 'https://srrndngs.myshopify.com/api/graphql',
-        credentials: 'same-origin',
-        headers: {
-          'X-Shopify-Storefront-Access-Token': '30727722f2f8fb191b4083f205e6c120',
-        },
-      }),
-    ]),
-    cache: appCache,
+  appCache.writeData({
+    data: {
+      navigation: {
+        __typename: 'Navigation',
+        isOpen: false,
+      },
+      cart: {
+        __typename: 'Cart',
+        isOpen: false,
+      },
+      checkout: initialCheckout,
+    },
   });
+
+  return client;
 };
 
 export default function initApollo(initialState?: any) {
