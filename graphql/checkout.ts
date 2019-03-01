@@ -42,16 +42,19 @@ export const createCheckout = gql`
   ${CheckoutFragment}
 `;
 
-export const updateCheckout = gql`
-  mutation updateCheckout($checkout: Checkout) {
-    updateCheckout(checkout: $checkout) @client
+export const updateCheckoutId = gql`
+  mutation updateCheckoutId($checkoutId: ID!) {
+    updateCheckoutId(checkoutId: $checkoutId) @client
   }
 `;
 
 export const getCheckout = gql`
-  {
-    checkout @client {
-      ...CheckoutFragment
+  query getCheckout($checkoutId: ID!) {
+    checkoutId @client @export(as: "checkoutId")
+    node(id: $checkoutId) {
+      ... on Checkout {
+        ...CheckoutFragment
+      }
     }
   }
   ${CheckoutFragment}

@@ -3,7 +3,7 @@ import App, { AppProps, Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Cart, Footer, Nav } from '../components';
-import { createCheckout, updateCheckout } from '../graphql/checkout';
+import { createCheckout, updateCheckoutId } from '../graphql/checkout';
 import withApolloClient from '../lib/with-apollo-client';
 
 interface MainAppProps extends AppProps {
@@ -34,7 +34,7 @@ class MainApp extends App<MainAppProps> {
     const { apolloClient } = this.props;
 
     // Exit if the checkout already exists
-    if (localStorage.getItem('shopify-checkout')) {
+    if (localStorage.getItem('shopify-checkout-id')) {
       return;
     }
 
@@ -48,10 +48,10 @@ class MainApp extends App<MainAppProps> {
       // Set to local state and persist to localStorage
       const { checkout } = createCheckoutMutation.data.checkoutCreate;
       apolloClient.mutate({
-        mutation: updateCheckout,
-        variables: { checkout },
+        mutation: updateCheckoutId,
+        variables: { checkoutId: checkout.id },
       });
-      localStorage.setItem('shopify-checkout', JSON.stringify(checkout));
+      localStorage.setItem('shopify-checkout-id', checkout.id);
     } catch {
       // TODO: Error handling
     }

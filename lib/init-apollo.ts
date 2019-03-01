@@ -11,7 +11,35 @@ if (!isBrowser) {
 
 const create = (initialState?: any) => {
   const appCache = new InMemoryCache().restore(initialState || {});
-  const initialCheckout = isBrowser ? JSON.parse(localStorage.getItem('shopify-checkout')) : null;
+  const checkoutIdLocal = isBrowser ? localStorage.getItem('shopify-checkout-id') : null;
+
+  const typeDefs = gql`
+    extend type Query {
+      checkoutId: ID!
+    }
+  `;
+
+  const resolvers = {
+    Mutation: {
+      updateNavigation: (_, { isOpen }, { cache }) => {
+        const data = {
+          navigation: {
+            __typename: 'Navigation',
+            isOpen,
+          },
+        };
+        cache.writeData({ data });
+        return null;
+      },
+      updateCheckoutId: (_, { checkoutId }, { cache }) => {
+        const data = {
+          checkoutId,
+        };
+        cache.writeData({ data });
+        return null;
+      },
+    },
+  };
 
   const client = new ApolloClient({
     connectToDevTools: isBrowser,
@@ -24,29 +52,11 @@ const create = (initialState?: any) => {
         'X-Shopify-Storefront-Access-Token': '30727722f2f8fb191b4083f205e6c120',
       },
     }),
-    resolvers: {
-      Mutation: {
-        updateNavigation: (_, { isOpen }, { cache }) => {
-          const data = {
-            navigation: {
-              __typename: 'Navigation',
-              isOpen,
-            },
-          };
-          cache.writeData({ data });
-          return null;
-        },
-        updateCheckout: (_, { checkout }, { cache }) => {
-          const data = {
-            checkout,
-          };
-          cache.writeData({ data });
-          return null;
-        },
-      },
-    },
+    typeDefs,
+    resolvers,
   });
 
+  // Initial client state
   appCache.writeData({
     data: {
       navigation: {
@@ -56,8 +66,9 @@ const create = (initialState?: any) => {
       cart: {
         __typename: 'Cart',
         isOpen: false,
+        isReady: false,
       },
-      checkout: initialCheckout,
+      checkoutId: checkoutIdLocal,
     },
   });
 

@@ -4,7 +4,7 @@ import { getCheckout } from '../../graphql/checkout';
 
 const Cart: React.FunctionComponent = () => (
   <Query query={getCheckout}>
-    {({ data }) => {
+    {({ data, error, loading }) => {
       return null;
     }}
   </Query>
