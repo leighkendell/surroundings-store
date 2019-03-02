@@ -14,14 +14,24 @@ const create = (initialState?: any) => {
   const checkoutIdLocal = isBrowser ? localStorage.getItem('shopify-checkout-id') : null;
 
   const typeDefs = gql`
+    type Navigation {
+      isOpen: Boolean!
+    }
+
+    type Cart {
+      isOpen: Boolean!
+    }
+
     extend type Query {
       checkoutId: ID!
+      navigation: Navigation
+      cart: Cart
     }
   `;
 
   const resolvers = {
     Mutation: {
-      updateNavigation: (_, { isOpen }, { cache }) => {
+      updateNavigationOpen: (_, { isOpen }, { cache }) => {
         const data = {
           navigation: {
             __typename: 'Navigation',
@@ -29,14 +39,10 @@ const create = (initialState?: any) => {
           },
         };
         cache.writeData({ data });
-        return null;
       },
       updateCheckoutId: (_, { checkoutId }, { cache }) => {
-        const data = {
-          checkoutId,
-        };
+        const data = { checkoutId };
         cache.writeData({ data });
-        return null;
       },
     },
   };
@@ -59,16 +65,11 @@ const create = (initialState?: any) => {
   // Initial client state
   appCache.writeData({
     data: {
+      checkoutId: checkoutIdLocal,
       navigation: {
         __typename: 'Navigation',
         isOpen: false,
       },
-      cart: {
-        __typename: 'Cart',
-        isOpen: false,
-        isReady: false,
-      },
-      checkoutId: checkoutIdLocal,
     },
   });
 

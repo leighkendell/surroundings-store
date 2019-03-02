@@ -13,7 +13,7 @@ import {
   Section,
   Text,
 } from '../components';
-import getProduct from '../graphql/get-product';
+import { productByHandle } from '../graphql/products';
 import { formatCurrency, getTheme } from '../lib/helpers';
 
 interface Props {
@@ -25,7 +25,7 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
 
   return (
     <Layout>
-      <Query query={getProduct} variables={{ handle }}>
+      <Query query={productByHandle} variables={{ handle }}>
         {({ data, loading, error }) => {
           if (loading) {
             return <HeaderText>{initialTitle}</HeaderText>;

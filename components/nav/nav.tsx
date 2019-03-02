@@ -2,23 +2,25 @@ import Link from 'next/link';
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
 import { CartToggle, NavList, NavListItem, NavToggle, Wrapper } from '..';
-import getNavigationQuery from '../../graphql/get-navigation';
-import updateNavigationMutation from '../../graphql/update-navigation';
+import { getNavigationOpen, updateNavigationOpen } from '../../graphql/navigation';
 import Logo from '../../svg/surroundings-logo.svg';
 import styles from './nav.scss';
 
 const Nav: React.FunctionComponent = () => (
-  <Query query={getNavigationQuery}>
+  <Query query={getNavigationOpen}>
     {({ data }) => {
       const { isOpen } = data.navigation;
 
       return (
         <nav className={styles.nav} role="navigation">
           <Wrapper additionalClass={styles.wrapper} collapseTop={true} collapseBottom={true}>
-            <Mutation mutation={updateNavigationMutation}>
-              {updateNavigation => (
+            <Mutation mutation={updateNavigationOpen}>
+              {updateNavigationOpenMutation => (
                 <>
-                  <NavToggle open={isOpen} onClick={() => updateNavigation({ variables: { isOpen: !isOpen } })} />
+                  <NavToggle
+                    open={isOpen}
+                    onClick={() => updateNavigationOpenMutation({ variables: { isOpen: !isOpen } })}
+                  />
                   <Link href="/">
                     <a className={styles.logo} aria-label="Link to home page">
                       <Logo />
