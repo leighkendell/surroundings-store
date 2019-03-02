@@ -7,7 +7,8 @@ interface Props {
 }
 
 const NavList: React.FunctionComponent<Props> = React.memo(({ open, children }) => {
-  const className = classNames(styles.navList, { [styles.navListOpen]: open });
+  const className = classNames(styles.list, { [styles.open]: open });
+
   return <ul className={className}>{children}</ul>;
 });
 

@@ -1,7 +1,7 @@
 @import '../../sass/variables';
 @import '../../sass/mixins';
 
-.navList {
+.list {
   display: flex;
   visibility: hidden;
   position: fixed;
@@ -34,7 +34,7 @@
   }
 }
 
-.navListOpen {
+.open {
   visibility: visible;
   transform: translateY(-100%);
 
