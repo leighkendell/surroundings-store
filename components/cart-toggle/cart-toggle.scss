@@ -1,24 +1,36 @@
 @import '../../sass/variables';
 @import '../../sass/mixins';
 
-.cartToggle {
+.icon {
+  display: block;
+  transition: 0.25s ease;
+}
+
+.toggle {
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
   width: 30px;
   height: 30px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  cursor: pointer;
 
   @include breakpoint(medium) {
     margin-left: $spacing-small;
   }
+
+  &:hover {
+    .icon {
+      fill: $color-blue;
+    }
+  }
 }
 
-.cartToggleIcon {
-  display: block;
-}
-
-.cartTotal {
+.total {
   display: flex;
   position: absolute;
   top: -10px;

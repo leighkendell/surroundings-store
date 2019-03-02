@@ -7,3 +7,9 @@ export const getCart = gql`
     }
   }
 `;
+
+export const updateCartOpen = gql`
+  mutation updateCartOpen($isOpen: Boolean!) {
+    updateCartOpen(isOpen: $isOpen) @client
+  }
+`;

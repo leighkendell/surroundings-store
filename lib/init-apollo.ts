@@ -40,6 +40,15 @@ const create = (initialState?: any) => {
         };
         cache.writeData({ data });
       },
+      updateCartOpen: (_, { isOpen }, { cache }) => {
+        const data = {
+          cart: {
+            __typename: 'Cart',
+            isOpen,
+          },
+        };
+        cache.writeData({ data });
+      },
       updateCheckoutId: (_, { checkoutId }, { cache }) => {
         const data = { checkoutId };
         cache.writeData({ data });
@@ -68,6 +77,10 @@ const create = (initialState?: any) => {
       checkoutId: checkoutIdLocal,
       navigation: {
         __typename: 'Navigation',
+        isOpen: false,
+      },
+      cart: {
+        __typename: 'Cart',
         isOpen: false,
       },
     },
