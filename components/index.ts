@@ -3,6 +3,7 @@ export { default as Button } from './button/button';
 export { default as Cart } from './cart/cart';
 export { default as CartFooter } from './cart-footer/cart-footer';
 export { default as CartItem } from './cart-item/cart-item';
+export { default as CartItems } from './cart-items/cart-items';
 export { default as CartSection } from './cart-section/cart-section';
 export { default as CartToggle } from './cart-toggle/cart-toggle';
 export { default as CartWrapper } from './cart-wrapper/cart-wrapper';

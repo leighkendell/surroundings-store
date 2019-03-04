@@ -36,6 +36,7 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
           }
 
           if (data) {
+            console.log(data);
             const { title, description, images, variants, priceRange, tags } = data.productByHandle;
             const { amount, currencyCode } = priceRange.minVariantPrice;
             const price = formatCurrency(currencyCode, amount);
