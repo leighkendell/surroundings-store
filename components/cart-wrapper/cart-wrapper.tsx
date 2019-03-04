@@ -37,9 +37,9 @@ const CartWrapper: React.FunctionComponent<Props> = ({ children, cart }) => {
           />
         )}
       </Mutation>
-      <animated.div className={styles.wrapper} style={wrapperSpring}>
+      <animated.aside className={styles.wrapper} style={wrapperSpring}>
         {children}
-      </animated.div>
+      </animated.aside>
     </>
   );
 };

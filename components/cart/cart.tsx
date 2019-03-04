@@ -1,21 +1,23 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { CartWrapper, Heading, Text } from '..';
+import { CartFooter, CartSection, CartWrapper, Heading, Text } from '..';
 import { getCheckout } from '../../graphql/checkout';
-import CartItem from '../cart-item/cart-item';
+import { formatCurrency } from '../../lib/helpers';
 
 interface Props {
   isReady: boolean;
 }
 
 const EmptyMessage: React.FunctionComponent = () => (
-  <Text>
-    Your cart is empty{' '}
-    <span role="img" aria-label="Sad face">
-      😔
-    </span>
-    , add some merch!
-  </Text>
+  <CartSection>
+    <Text>
+      Your cart is empty{' '}
+      <span role="img" aria-label="Sad face">
+        😔
+      </span>
+      , add some merch!
+    </Text>
+  </CartSection>
 );
 
 const Cart: React.FunctionComponent<Props> = ({ isReady }) => (
@@ -24,11 +26,13 @@ const Cart: React.FunctionComponent<Props> = ({ isReady }) => (
       if (data) {
         const { cart, node: checkout } = data;
         const isCartEmpty = checkout && checkout.lineItems.edges.length === 0;
+        const webUrl = checkout ? checkout.webUrl : '';
+        const totalPrice = checkout ? formatCurrency('AUD', checkout.totalPrice) : '';
 
         return (
           <CartWrapper cart={cart}>
             <Heading type="h2">Your cart</Heading>
-            {isCartEmpty && <EmptyMessage />}
+            {!isCartEmpty ? <EmptyMessage /> : <CartFooter webUrl={webUrl} totalPrice={totalPrice} />}
           </CartWrapper>
         );
       }

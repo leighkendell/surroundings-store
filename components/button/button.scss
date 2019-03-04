@@ -30,7 +30,7 @@
     height: 0;
     padding-bottom: 100%;
     transform: translateX(var(--translateX)) scale(var(--scale));
-    transition: 0.2s ease-in-out;
+    transition: 0.3s ease-in-out;
     border-radius: 100%;
     opacity: var(--opacity);
     background-color: darken($color-button-bg-default, 25%);
@@ -39,6 +39,15 @@
   &:hover::before {
     --translateX: 0;
     --opacity: 1;
-    --scale: 1.25;
+    --scale: 1.4;
+  }
+}
+
+.basic {
+  background-color: transparent;
+  color: $color-blue;
+
+  &::before {
+    background-color: $color-grey;
   }
 }

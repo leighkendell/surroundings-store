@@ -1,0 +1,28 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.section {
+  margin: $spacing-small 0;
+
+  @include breakpoint(medium) {
+    margin: $spacing-medium 0;
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.inline {
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: 100%;
+
+    @include breakpoint(medium) {
+      width: auto;
+    }
+  }
+}
