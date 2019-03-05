@@ -42,6 +42,12 @@ export const createCheckout = gql`
   ${CheckoutFragment}
 `;
 
+export const getCheckoutId = gql`
+  query {
+    checkoutId @client
+  }
+`;
+
 export const updateCheckoutId = gql`
   mutation updateCheckoutId($checkoutId: ID!) {
     updateCheckoutId(checkoutId: $checkoutId) @client
@@ -49,12 +55,8 @@ export const updateCheckoutId = gql`
 `;
 
 export const getCheckout = gql`
-  query getCheckout($checkoutId: ID!, $isReady: Boolean!) {
-    checkoutId @client @export(as: "checkoutId")
-    cart @client {
-      isOpen
-    }
-    node(id: $checkoutId) @include(if: $isReady) {
+  query getCheckout($checkoutId: ID!) {
+    node(id: $checkoutId) {
       ... on Checkout {
         ...CheckoutFragment
       }

@@ -27,7 +27,7 @@ class MainApp extends App<MainAppProps> {
       <Container>
         <ApolloProvider client={apolloClient}>
           <Nav isReady={cartReady} />
-          <Cart isReady={cartReady} />
+          <Cart />
           <Component {...pageProps} />
           <Footer />
         </ApolloProvider>

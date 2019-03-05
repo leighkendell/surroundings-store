@@ -5,12 +5,12 @@ import { updateCartOpen } from '../../graphql/cart';
 
 interface Props {
   totalPrice: string;
-  webUrl: Location;
+  webUrl: string;
 }
 
 const CartFooter: React.FunctionComponent<Props> = ({ totalPrice, webUrl }) => {
   const navigateToCart = () => {
-    window.location = webUrl;
+    window.location.href = webUrl;
   };
 
   return (

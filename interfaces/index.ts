@@ -1,3 +1,9 @@
+export interface Cart {
+  cart: {
+    isOpen: boolean;
+  };
+}
+
 export interface Image {
   id: string;
   altText: string;
@@ -35,4 +41,16 @@ export interface CheckoutLineItem {
 
 export interface CheckoutLineItemEdge {
   node: CheckoutLineItem;
+}
+
+export interface CheckoutLineItemConnection {
+  edges: CheckoutLineItemEdge[];
+}
+
+export interface Checkout {
+  id: string;
+  webUrl: string;
+  totalTax: string;
+  totalPrice: string;
+  lineItems: CheckoutLineItemConnection;
 }

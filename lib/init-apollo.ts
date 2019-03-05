@@ -1,7 +1,7 @@
 import { ApolloClient, gql, HttpLink, InMemoryCache } from 'apollo-boost';
 import fetch from 'isomorphic-unfetch';
+import { isBrowser } from './helpers';
 
-const isBrowser = typeof window !== 'undefined';
 let apolloClient: ApolloClient<{}> | null = null;
 
 // Polyfill fetch() on the server (used by apollo-client)

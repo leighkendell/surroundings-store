@@ -37,7 +37,6 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
           }
 
           if (data) {
-            console.log(data);
             const { title, description, images, variants, priceRange, tags } = data.productByHandle;
             const { amount, currencyCode } = priceRange.minVariantPrice;
             const price = formatCurrency(currencyCode, amount);
@@ -68,7 +67,7 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
                             mutate({
                               variables: {
                                 checkoutId:
-                                  'Z2lkOi8vc2hvcGlmeS9DaGVja291dC8yZDM0MDhhMGIyMzI2YzYyNGMwNGZiOGY1MmVhMzFlMj9rZXk9M2Q3OWMyZGE0ZjVhYmUyMzZjOWFiNjYyZmYxMzg2NGE=',
+                                  'Z2lkOi8vc2hvcGlmeS9DaGVja291dC9mYzVmYmVmZWRiMWU0OGI0YzkyZTljZTE3OTBhYWY3NT9rZXk9MWY5MTRjMzU2MDA4ZmU4NGVhNTMyOGRiY2U4OWIxYjc=',
                                 lineItems: [
                                   {
                                     quantity: 1,

@@ -7,6 +7,7 @@ export { default as CartItems } from './cart-items/cart-items';
 export { default as CartSection } from './cart-section/cart-section';
 export { default as CartToggle } from './cart-toggle/cart-toggle';
 export { default as CartWrapper } from './cart-wrapper/cart-wrapper';
+export { default as CheckoutQuery } from './checkout-query/checkout-query';
 export { default as ContentCard } from './content-card/content-card';
 export { default as Footer } from './footer/footer';
 export { default as HeaderText } from './header-text/header-text';

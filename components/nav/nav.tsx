@@ -6,11 +6,7 @@ import { getNavigationOpen, updateNavigationOpen } from '../../graphql/navigatio
 import Logo from '../../svg/surroundings-logo.svg';
 import styles from './nav.scss';
 
-interface Props {
-  isReady: boolean;
-}
-
-const Nav: React.FunctionComponent<Props> = ({ isReady }) => (
+const Nav: React.FunctionComponent = () => (
   <Query query={getNavigationOpen}>
     {({ data }) => {
       const { isOpen } = data.navigation;
@@ -36,7 +32,7 @@ const Nav: React.FunctionComponent<Props> = ({ isReady }) => (
                     <NavListItem href="/music">Music</NavListItem>
                     <NavListItem href="/contact">Contact</NavListItem>
                   </NavList>
-                  <CartToggle isReady={isReady} />
+                  <CartToggle />
                 </>
               )}
             </Mutation>

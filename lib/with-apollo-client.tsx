@@ -3,9 +3,8 @@ import { NextAppContext } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 import { getDataFromTree } from 'react-apollo';
+import { isBrowser } from './helpers';
 import initApollo from './init-apollo';
-
-const isBrowser = typeof window !== 'undefined';
 
 interface ApolloProps {
   apolloState: ApolloClient<{}>;
