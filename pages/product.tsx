@@ -1,6 +1,6 @@
 import { SingletonRouter, withRouter } from 'next/router';
 import React from 'react';
-import { Query } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import {
   Button,
   HeaderText,
@@ -13,6 +13,7 @@ import {
   Section,
   Text,
 } from '../components';
+import { checkoutLineItemsReplace } from '../graphql/checkout';
 import { productByHandle } from '../graphql/products';
 import { formatCurrency, getTheme } from '../lib/helpers';
 
@@ -60,7 +61,28 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
                         </option>
                       ))}
                     </InputSelect>
-                    <Button>Add to cart</Button>
+                    <Mutation mutation={checkoutLineItemsReplace}>
+                      {mutate => (
+                        <Button
+                          onClick={() =>
+                            mutate({
+                              variables: {
+                                checkoutId:
+                                  'Z2lkOi8vc2hvcGlmeS9DaGVja291dC8yZDM0MDhhMGIyMzI2YzYyNGMwNGZiOGY1MmVhMzFlMj9rZXk9M2Q3OWMyZGE0ZjVhYmUyMzZjOWFiNjYyZmYxMzg2NGE=',
+                                lineItems: [
+                                  {
+                                    quantity: 1,
+                                    variantId: 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8xOTY1MjEwNjIyMzcwNA==',
+                                  },
+                                ],
+                              },
+                            })
+                          }
+                        >
+                          Add to cart
+                        </Button>
+                      )}
+                    </Mutation>
                   </ProductDetailsGridItem>
                 </ProductDetailsGrid>
               </Section>

@@ -62,3 +62,14 @@ export const getCheckout = gql`
   }
   ${CheckoutFragment}
 `;
+
+export const checkoutLineItemsReplace = gql`
+  mutation checkoutLineItemsReplace($lineItems: [CheckoutLineItemInput!]!, $checkoutId: ID!) {
+    checkoutLineItemsReplace(lineItems: $lineItems, checkoutId: $checkoutId) {
+      checkout {
+        ...CheckoutFragment
+      }
+    }
+  }
+  ${CheckoutFragment}
+`;
