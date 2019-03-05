@@ -11,22 +11,17 @@ interface MainAppProps extends AppProps {
 }
 
 class MainApp extends App<MainAppProps> {
-  public state = {
-    cartReady: false,
-  };
-
   public componentDidMount() {
     this.initCheckout();
   }
 
   public render() {
     const { Component, pageProps, apolloClient } = this.props;
-    const { cartReady } = this.state;
 
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <Nav isReady={cartReady} />
+          <Nav />
           <Cart />
           <Component {...pageProps} />
           <Footer />
@@ -36,12 +31,10 @@ class MainApp extends App<MainAppProps> {
   }
 
   private async initCheckout() {
-    const { localStorage } = window;
     const { apolloClient } = this.props;
 
     // Exit if the checkout already exists
     if (localStorage.getItem('shopify-checkout-id')) {
-      this.setState({ cartReady: true });
       return;
     }
 
@@ -61,7 +54,6 @@ class MainApp extends App<MainAppProps> {
       });
 
       localStorage.setItem('shopify-checkout-id', checkout.id);
-      this.setState({ cartReady: true });
     } catch {
       // TODO: Error handling
     }
