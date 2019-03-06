@@ -1,15 +1,19 @@
 import React from 'react';
+import { ImageConnection } from '../../interfaces';
 import styles from './product-image.scss';
 
 interface Props {
-  src: string;
-  alt: string;
+  images: ImageConnection;
 }
 
-const ProductImage: React.FunctionComponent<Props> = ({ src, alt }) => (
-  <div className={styles.wrapper}>
-    <img src={src} alt={alt} className={styles.image} />
-  </div>
+const ProductImage: React.FunctionComponent<Props> = ({ images }) => (
+  <>
+    {images.edges.map(({ node }) => (
+      <div className={styles.wrapper} key={node.id}>
+        <img src={node.transformedSrc} alt={node.altText} className={styles.image} />
+      </div>
+    ))}
+  </>
 );
 
 export default ProductImage;

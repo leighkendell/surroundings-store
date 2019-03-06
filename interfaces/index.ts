@@ -10,6 +10,14 @@ export interface Image {
   transformedSrc: string;
 }
 
+export interface ImageEdge {
+  node: Image;
+}
+
+export interface ImageConnection {
+  edges: ImageEdge[];
+}
+
 export interface ProductVariant {
   id: string;
   image: Image;
@@ -18,18 +26,33 @@ export interface ProductVariant {
   title: string;
 }
 
+export interface ProductVariantEdge {
+  node: ProductVariant;
+}
+
+export interface ProductVariantConnection {
+  edges: ProductVariantEdge[];
+}
+
+export interface Money {
+  amount: number;
+  currencyCode: string;
+}
+
+export interface ProductPriceRange {
+  maxVariantPrice: Money;
+  minVariantPrice: Money;
+}
+
 export interface Product {
-  description: string;
-  handle: string;
   id: string;
   title: string;
+  description: string;
+  priceRange: ProductPriceRange;
+  handle: string;
   tags: string[];
-  images: {
-    edges: Image[];
-  };
-  variants: {
-    edges: ProductVariant[];
-  };
+  images: ImageConnection;
+  variants: ProductVariantConnection;
 }
 
 export interface CheckoutLineItem {

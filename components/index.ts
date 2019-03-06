@@ -22,6 +22,7 @@ export { default as NavToggle } from './nav-toggle/nav-toggle';
 export { default as ProductCard } from './product-card/product-card';
 export { default as ProductDetailsGrid } from './product-details-grid/product-details-grid';
 export { default as ProductDetailsGridItem } from './product-details-grid-item/product-details-grid-item';
+export { default as ProductForm } from './product-form/product-form';
 export { default as ProductGrid } from './product-grid/product-grid';
 export { default as ProductImage } from './product-image/product-image';
 export { default as Products } from './products/products';
