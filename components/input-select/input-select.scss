@@ -1,5 +1,11 @@
 @import '../../sass/variables';
 
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
 .select {
   display: block;
   width: 100%;
