@@ -16,7 +16,7 @@ interface FormSubmitParams {
 
 const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
   const [productVariant, updateProductVariant] = useState('default');
-  const [productQuantity, updateProductQuantity] = useState('');
+  const [productQuantity, updateProductQuantity] = useState(1);
 
   const handleVariantChange = (event: ChangeEvent) => {
     const target = event.target as HTMLSelectElement;
@@ -25,19 +25,36 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
 
   const handleFormSubmit = ({ event, mutate, checkout }: FormSubmitParams) => {
     event.preventDefault();
+
+    let newItems = [];
+
+    // Get the current cart contents
+    const currentItems = checkout.lineItems.edges.map(item => ({
+      variantId: item.node.variant.id,
+      quantity: item.node.quantity,
+    }));
+
+    // Check if the item already exists in the cart
+    const existingItem = currentItems.find(item => item.variantId === productVariant);
+
+    if (existingItem) {
+      // If it does, just update the quantity
+      const index = currentItems.indexOf(existingItem);
+      currentItems[index].quantity = currentItems[index].quantity + productQuantity;
+      newItems = [...currentItems];
+    } else {
+      // If it doesn't, add the new item
+      const newItem = { variantId: productVariant, quantity: productQuantity };
+      newItems = [newItem, ...currentItems];
+    }
+
+    // Update the cart
     mutate({
       variables: {
         checkoutId: checkout.id,
-        lineItems: [
-          {
-            variantId: productVariant,
-            quantity: 1,
-          },
-        ],
+        lineItems: newItems,
       },
     });
-
-    console.log(productVariant);
   };
 
   return (
