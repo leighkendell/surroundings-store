@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Mutation, MutationFn } from 'react-apollo';
 import { Button, CheckoutQuery, FormField, FormGroup, Input, InputSelect, Label } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 interface FormSubmitParams {
-  event: Event;
+  event: FormEvent;
   mutate: MutationFn;
   checkout: Checkout;
 }
@@ -50,7 +50,7 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
         return (
           <Mutation mutation={checkoutLineItemsReplace}>
             {(mutate, { loading }) => (
-              <form onSubmit={() => handleFormSubmit({ event, mutate, checkout })}>
+              <form onSubmit={event => handleFormSubmit({ event, mutate, checkout })}>
                 <FormGroup>
                   {/* tslint:disable:react-a11y-role-has-required-aria-props */}
                   <FormField>
@@ -84,7 +84,9 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
                   </FormField>
                 </FormGroup>
                 {/* tslint:enable */}
-                <Button disabled={loading}>Add to cart</Button>
+                <Button disabled={loading} type="submit">
+                  Add to cart
+                </Button>
               </form>
             )}
           </Mutation>

@@ -21,6 +21,15 @@
   @include breakpoint(medium) {
     padding: $spacing-medium;
   }
+
+  &::-webkit-scrollbar{
+    width: 8px;
+  }
+  scrollbar-color: red;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($color-dark, 0.25);
+  }
 }
 
 .background {

@@ -23,7 +23,7 @@ const ProductCard: React.FunctionComponent<Props> = ({ title, price, image, path
       <div className={styles.content}>
         <span className={styles.title}>{title}</span>
         <strong className={styles.price}>{price}</strong>
-        <Button className={styles.button}>View product</Button>
+        <Button>View product</Button>
       </div>
     </a>
   </Link>
