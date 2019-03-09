@@ -1,0 +1,14 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.notification {
+  @include card-shadow;
+
+  position: fixed;
+  z-index: 2;
+  right: $spacing-small;
+  bottom: $spacing-small;
+  padding: $spacing-small;
+  border-radius: 4px;
+  background-color: $color-yellow;
+}

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Mutation, MutationFn } from 'react-apollo';
-import { Button, CheckoutQuery, FormField, FormGroup, Input, InputSelect, Label } from '..';
+import { Button, CheckoutQuery, FormField, FormGroup, Input, InputSelect, Label, Notification } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
 import { Checkout, ProductVariantConnection } from '../../interfaces';
 import { getUpdatedLineItems } from '../../lib/helpers';
@@ -87,6 +87,9 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
                 <Button disabled={loading} type="submit">
                   Add to cart
                 </Button>
+                <Notification visible={loading}>
+                  {loading ? 'Adding item to the cart...' : 'Successfully added item to the cart'}
+                </Notification>
               </form>
             )}
           </Mutation>

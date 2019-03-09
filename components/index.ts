@@ -23,6 +23,7 @@ export { default as Nav } from './nav/nav';
 export { default as NavList } from './nav-list/nav-list';
 export { default as NavListItem } from './nav-list-item/nav-list-item';
 export { default as NavToggle } from './nav-toggle/nav-toggle';
+export { default as Notification } from './notification/notification';
 export { default as ProductCard } from './product-card/product-card';
 export { default as ProductDetailsGrid } from './product-details-grid/product-details-grid';
 export { default as ProductDetailsGridItem } from './product-details-grid-item/product-details-grid-item';
