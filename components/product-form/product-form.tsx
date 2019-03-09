@@ -1,8 +1,9 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Mutation, MutationFn } from 'react-apollo';
-import { Button, CheckoutQuery, InputSelect } from '..';
+import { Button, CheckoutQuery, FormField, FormGroup, Input, InputSelect, Label } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
 import { Checkout, ProductVariantConnection } from '../../interfaces';
+import { getUpdatedLineItems } from '../../lib/helpers';
 
 interface Props {
   variants: ProductVariantConnection;
@@ -15,7 +16,8 @@ interface FormSubmitParams {
 }
 
 const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
-  const [productVariant, updateProductVariant] = useState('default');
+  const [defaultVariant] = variants.edges;
+  const [productVariant, updateProductVariant] = useState(defaultVariant.node.id);
   const [productQuantity, updateProductQuantity] = useState(1);
 
   const handleVariantChange = (event: ChangeEvent) => {
@@ -23,30 +25,15 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
     updateProductVariant(target.value);
   };
 
+  const handleQuantityChange = (event: ChangeEvent) => {
+    const target = event.target as HTMLInputElement;
+    updateProductQuantity(parseInt(target.value, 10));
+  };
+
   const handleFormSubmit = ({ event, mutate, checkout }: FormSubmitParams) => {
     event.preventDefault();
 
-    let newItems = [];
-
-    // Get the current cart contents
-    const currentItems = checkout.lineItems.edges.map(item => ({
-      variantId: item.node.variant.id,
-      quantity: item.node.quantity,
-    }));
-
-    // Check if the item already exists in the cart
-    const existingItem = currentItems.find(item => item.variantId === productVariant);
-
-    if (existingItem) {
-      // If it does, just update the quantity
-      const index = currentItems.indexOf(existingItem);
-      currentItems[index].quantity = currentItems[index].quantity + productQuantity;
-      newItems = [...currentItems];
-    } else {
-      // If it doesn't, add the new item
-      const newItem = { variantId: productVariant, quantity: productQuantity };
-      newItems = [newItem, ...currentItems];
-    }
+    const newItems = getUpdatedLineItems(checkout, productVariant, productQuantity, 'add');
 
     // Update the cart
     mutate({
@@ -62,19 +49,42 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
       {checkout => {
         return (
           <Mutation mutation={checkoutLineItemsReplace}>
-            {mutate => (
+            {(mutate, { loading }) => (
               <form onSubmit={() => handleFormSubmit({ event, mutate, checkout })}>
-                <InputSelect id="variant" value={productVariant} onChange={handleVariantChange} label="Size">
+                <FormGroup>
                   {/* tslint:disable:react-a11y-role-has-required-aria-props */}
-                  <option disabled={true} value="default" />
-                  {variants.edges.map(variant => (
-                    <option key={variant.node.id} value={variant.node.id}>
-                      {variant.node.title}
-                    </option>
-                  ))}
-                  {/* tslint:enable */}
-                </InputSelect>
-                <Button>Add to cart</Button>
+                  <FormField>
+                    <Label htmlFor="variant">Size</Label>
+                    <InputSelect
+                      id="variant"
+                      value={productVariant}
+                      onChange={handleVariantChange}
+                      required={true}
+                      disabled={loading}
+                    >
+                      {variants.edges.map(variant => (
+                        <option key={variant.node.id} value={variant.node.id}>
+                          {variant.node.title}
+                        </option>
+                      ))}
+                    </InputSelect>
+                  </FormField>
+                  <FormField>
+                    <Label htmlFor="quantity">Quantity</Label>
+                    <Input
+                      id="quantity"
+                      type="number"
+                      min="1"
+                      max="10"
+                      step="1"
+                      value={productQuantity}
+                      onChange={handleQuantityChange}
+                      disabled={loading}
+                    />
+                  </FormField>
+                </FormGroup>
+                {/* tslint:enable */}
+                <Button disabled={loading}>Add to cart</Button>
               </form>
             )}
           </Mutation>

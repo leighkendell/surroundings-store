@@ -4,15 +4,24 @@
 .item {
   display: flex;
   align-items: center;
-  margin: $spacing-small 0;
+  padding: $spacing-small / 2 0;
+  border-bottom: 1px solid $color-grey;
   list-style: none;
+
+  @include breakpoint(medium) {
+    padding: $spacing-small 0;
+  }
+
+  &:first-child {
+    border-top: 1px solid $color-grey;
+  }
 }
 
 .image {
   position: relative;
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   margin-right: $spacing-small;
 
   img {
@@ -38,7 +47,6 @@
 }
 
 .button {
-  margin-left: auto;
   padding: 0;
   border: 0;
   outline: 0;
@@ -50,5 +58,15 @@
 
   @include breakpoint(medium) {
     font-size: $font-size-default;
+  }
+}
+
+.manage {
+  margin-left: auto;
+
+  input {
+    max-width: 60px;
+    margin-bottom: 0.25rem;
+    padding: 0.5em;
   }
 }

@@ -1,3 +1,8 @@
+export interface CheckoutLineItemArg {
+  variantId: string;
+  quantity: number;
+}
+
 export interface Cart {
   cart: {
     isOpen: boolean;

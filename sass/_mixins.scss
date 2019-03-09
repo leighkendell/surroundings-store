@@ -50,3 +50,22 @@
 @mixin card-shadow {
   box-shadow: 0 2px 4px rgba($color-dark, 0.02), 0 4px 15px rgba($color-dark, 0.05);
 }
+
+@mixin input {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  transition: 0.3s ease-in-out;
+  border: 1px solid $color-border;
+  border-radius: 2px;
+  outline: 0;
+  background-color: $color-light;
+
+  &:focus {
+    box-shadow: 0 0 0 3px $color-yellow;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}

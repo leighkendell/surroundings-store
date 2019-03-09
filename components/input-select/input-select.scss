@@ -1,26 +1,9 @@
 @import '../../sass/variables';
-
-.label {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: bold;
-}
+@import '../../sass/mixins';
 
 .select {
-  display: block;
-  width: 100%;
-  appearance: none;
-  max-width: 300px;
-  margin-bottom: 1.5rem;
-  padding: 1em;
-  transition: box-shadow 0.25s ease-in-out;
-  border: 1px solid $color-border;
-  border-radius: 2px;
-  outline: 0;
-  background: url('../../svg/select-arrows.svg') calc(100% - #{$spacing-small}) 50% no-repeat;
-  background-color: $color-light;
+  @include input;
 
-  &:focus {
-    box-shadow: 0 0 0 3px $color-yellow;
-  }
+  appearance: none;
+  background: url('../../svg/select-arrows.svg') calc(100% - #{$spacing-small}) 50% no-repeat;
 }

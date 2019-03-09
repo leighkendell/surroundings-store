@@ -1,0 +1,8 @@
+@import '../../sass/variables';
+
+.group {
+  display: grid;
+  grid-column-gap: $spacing-small;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 1.5rem;
+}

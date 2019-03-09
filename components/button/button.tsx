@@ -6,11 +6,11 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   basic?: boolean;
 }
 
-const Button: React.FunctionComponent<Props> = ({ children, basic, onClick }) => {
+const Button: React.FunctionComponent<Props> = ({ children, basic, ...props }) => {
   const className = classNames(styles.button, { [styles.basic]: basic });
 
   return (
-    <button className={className} onClick={onClick}>
+    <button className={className} {...props}>
       {children}
     </button>
   );
