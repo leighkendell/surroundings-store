@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { animated, useSpring, useTransition } from 'react-spring';
+import { animated, useTransition } from 'react-spring';
 import { isBrowser } from '../../lib/helpers';
 import styles from './notification.scss';
 

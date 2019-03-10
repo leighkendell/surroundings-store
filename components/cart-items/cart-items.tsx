@@ -9,7 +9,7 @@ interface Props {
   products: CheckoutLineItemEdge[];
 }
 
-const CartItems: React.FunctionComponent<Props> = ({ products }) => {
+const CartItems: React.FunctionComponent<Props> = React.memo(({ products }) => {
   const [updating, setUpdating] = useState(false);
 
   const [ResizeListener, sizes] = useResizeAware();
@@ -44,6 +44,6 @@ const CartItems: React.FunctionComponent<Props> = ({ products }) => {
       <Notification visible={updating}>{updating ? 'Updating cart...' : 'Cart updated!'}</Notification>
     </CartSection>
   );
-};
+});
 
 export default CartItems;

@@ -24,7 +24,7 @@ html {
 main {
   --offset: #{$nav-small} * 2;
 
-  min-height: calc(100vh - var(--offset));
+  min-height: $full-height;
 
   @include breakpoint(medium) {
     --offset: #{$nav-large} * 2;

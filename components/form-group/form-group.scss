@@ -4,5 +4,6 @@
   display: grid;
   grid-column-gap: $spacing-small;
   grid-template-columns: repeat(2, 1fr);
+  max-width: 400px;
   margin-bottom: 1.5rem;
 }

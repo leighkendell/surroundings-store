@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { ProductCard, ProductGrid, Section } from '..';
 import { collectionByHandle } from '../../graphql/products';
+import { Collection } from '../../interfaces';
 import { formatCurrency, getTheme } from '../../lib/helpers';
 import Wrapper from '../wrapper/wrapper';
 
@@ -9,8 +10,12 @@ interface Props {
   handle: string;
 }
 
+interface Data {
+  collectionByHandle: Collection;
+}
+
 const Products: React.FunctionComponent<Props> = ({ handle }) => (
-  <Query query={collectionByHandle} variables={{ handle }}>
+  <Query<Data> query={collectionByHandle} variables={{ handle }}>
     {({ data, loading, error }) => {
       if (loading) {
         return null;

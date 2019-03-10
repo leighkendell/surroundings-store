@@ -82,3 +82,15 @@ export interface Checkout {
   totalPrice: string;
   lineItems: CheckoutLineItemConnection;
 }
+
+export interface ProductEdge {
+  node: Product;
+}
+
+export interface ProductConnection {
+  edges: ProductEdge[];
+}
+
+export interface Collection {
+  products: ProductConnection;
+}

@@ -3,6 +3,7 @@
 
 .grid {
   display: grid;
+  min-height: $full-height;
 
   @include breakpoint(medium) {
     grid-template-columns: repeat(2, 1fr);
@@ -15,6 +16,9 @@
 
     // Image
     &:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: var(--theme);
 
       @include breakpoint(medium) {
