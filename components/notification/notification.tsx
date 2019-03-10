@@ -15,7 +15,7 @@ const Notification: React.FunctionComponent<Props> = ({ children, visible }) => 
     from: { transform: `translateY(150%)` },
     enter: { transform: `translateY(0)` },
     leave: { transform: `translateY(150%)` },
-    trail: 3000,
+    trail: 2000,
   });
 
   return (

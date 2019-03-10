@@ -27,6 +27,7 @@
     "react": "^16.8.4",
     "react-apollo": "^2.5.2",
     "react-dom": "^16.8.4",
+    "react-resize-aware": "3.0.0-beta.1",
     "react-spring": "^8.0.14"
   },
   "devDependencies": {

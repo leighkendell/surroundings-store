@@ -9,13 +9,27 @@ import styles from './cart-item.scss';
 
 interface Props {
   data: CheckoutLineItemEdge;
+  setUpdating: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CartItem: React.FunctionComponent<Props> = React.memo(({ data }) => {
+const CartItem: React.FunctionComponent<Props> = React.memo(({ data, setUpdating }) => {
   const { title, variant, quantity } = data.node;
   const [productQuantity, updateProductQuantity] = useState(quantity);
 
+  // When quantity changes
+  useEffect(() => {
+    setUpdating(false);
+  }, [data.node.quantity]);
+
+  // When component is unmounted
+  useEffect(() => {
+    return () => {
+      setUpdating(false);
+    };
+  }, []);
+
   const handleQuantityChange = (event: ChangeEvent, checkout: Checkout, mutate: MutationFn) => {
+    setUpdating(true);
     const target = event.target as HTMLInputElement;
     const newQuantity = parseInt(target.value, 10);
 
@@ -33,6 +47,8 @@ const CartItem: React.FunctionComponent<Props> = React.memo(({ data }) => {
   };
 
   const handleRemove = (mutate: MutationFn, checkout: Checkout) => {
+    setUpdating(true);
+
     // Update the cart
     const newItems = getUpdatedLineItems(checkout, variant.id, 0, 'remove');
     mutate({

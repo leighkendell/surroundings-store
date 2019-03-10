@@ -80,6 +80,7 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
                       value={productQuantity}
                       onChange={handleQuantityChange}
                       disabled={loading}
+                      required={true}
                     />
                   </FormField>
                 </FormGroup>
