@@ -12,7 +12,7 @@ interface Props {
 const CartItems: React.FunctionComponent<Props> = React.memo(({ products }) => {
   const [updating, setUpdating] = useState(false);
 
-  const [ResizeListener, sizes] = useResizeAware();
+  const [resizeListener, sizes] = useResizeAware();
   const heightSpring = useSpring({ height: sizes.height ? sizes.height : 'auto' });
   const updatingSpring = useSpring({
     opacity: updating ? 0.5 : 1,
@@ -34,7 +34,7 @@ const CartItems: React.FunctionComponent<Props> = React.memo(({ products }) => {
       <Heading type="h3">Products</Heading>
       <animated.div style={heightSpring}>
         <animated.ul className={styles.items} style={updatingSpring}>
-          <ResizeListener />
+          {resizeListener}
           {sortedProducts.map(product => {
             const { id } = product.node;
             return <CartItem key={id} data={product} setUpdating={setUpdating} />;

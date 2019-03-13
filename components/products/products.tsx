@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { ProductCard, ProductGrid, Section } from '..';
+import { ProductCards, ProductGrid, Section } from '..';
 import { collectionByHandle } from '../../graphql/products';
 import { Collection } from '../../interfaces';
 import Wrapper from '../wrapper/wrapper';
@@ -31,9 +31,7 @@ const Products: React.FunctionComponent<Props> = ({ handle }) => (
           <Section>
             <Wrapper collapseTop={true}>
               <ProductGrid>
-                {products.map(({ node }) => (
-                  <ProductCard data={node} key={node.id} />
-                ))}
+                <ProductCards products={products} />
               </ProductGrid>
             </Wrapper>
           </Section>
