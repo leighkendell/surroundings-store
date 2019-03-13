@@ -10,7 +10,7 @@ interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 const ProductCard: React.FunctionComponent<Props> = React.memo(
-  React.forwardRef(({ data: { handle, title, priceRange, images, tags } }, ref) => {
+  React.forwardRef<HTMLAnchorElement, Props>(({ data: { handle, title, priceRange, images, tags } }, ref) => {
     const { amount, currencyCode } = priceRange.minVariantPrice;
     const price = formatCurrency(currencyCode, amount);
     const [mainImage] = images.edges;
