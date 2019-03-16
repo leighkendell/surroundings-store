@@ -1,0 +1,18 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.main {
+  --offset: #{$nav-small} * 2;
+
+  position: relative;
+  min-height: $full-height;
+
+  @include breakpoint(medium) {
+    --offset: #{$nav-large} * 2;
+  }
+}
+
+.content {
+  top: 0;
+  width: 100%;
+}

@@ -21,16 +21,6 @@ html {
   }
 }
 
-main {
-  --offset: #{$nav-small} * 2;
-
-  min-height: $full-height;
-
-  @include breakpoint(medium) {
-    --offset: #{$nav-large} * 2;
-  }
-}
-
 // Typography
 // ==========================================================================
 body {

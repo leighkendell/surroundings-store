@@ -19,6 +19,7 @@ export { default as Input } from './input/input';
 export { default as InputSelect } from './input-select/input-select';
 export { default as Label } from './label/label';
 export { default as Layout } from './layout/layout';
+export { default as Main } from './main/main';
 export { default as Nav } from './nav/nav';
 export { default as NavList } from './nav-list/nav-list';
 export { default as NavListItem } from './nav-list-item/nav-list-item';

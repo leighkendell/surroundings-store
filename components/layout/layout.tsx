@@ -7,7 +7,7 @@ const Layout: React.FunctionComponent = ({ children }) => (
     <Head>
       <title>Surroundings - Store</title>
     </Head>
-    <main>{children}</main>
+    {children}
   </>
 );
 
