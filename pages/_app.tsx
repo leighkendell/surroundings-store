@@ -12,25 +12,19 @@ interface MainAppProps extends AppProps {
 }
 
 class MainApp extends App<MainAppProps> {
-  public state = {
-    loading: true,
-  };
-
   public componentDidMount() {
     this.initCheckout();
-    this.handleLoading();
   }
 
   public render() {
     const { Component, pageProps, apolloClient } = this.props;
-    const { loading } = this.state;
 
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
           <Nav />
           <Cart />
-          <Main loading={loading}>
+          <Main>
             <Component {...pageProps} />
           </Main>
           <Footer />
@@ -66,24 +60,6 @@ class MainApp extends App<MainAppProps> {
     } catch {
       // TODO: Error handling
     }
-  }
-
-  private handleLoading() {
-    this.setState({
-      loading: false,
-    });
-
-    Router.onRouteChangeStart = () => {
-      this.setState({
-        loading: true,
-      });
-    };
-
-    Router.onRouteChangeComplete = () => {
-      this.setState({
-        loading: false,
-      });
-    };
   }
 }
 
