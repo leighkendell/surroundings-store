@@ -4,10 +4,11 @@ import styles from './button.scss';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   basic?: boolean;
+  hover?: boolean;
 }
 
-const Button: React.FunctionComponent<Props> = ({ children, basic, ...props }) => {
-  const className = classNames(styles.button, { [styles.basic]: basic });
+const Button: React.FunctionComponent<Props> = ({ children, basic, hover, ...props }) => {
+  const className = classNames(styles.button, { [styles.basic]: basic, [styles.hover]: hover });
 
   return (
     <button className={className} {...props}>

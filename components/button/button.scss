@@ -2,6 +2,10 @@
 @import '../../sass/mixins';
 
 .button {
+  --translateX: 100%;
+  --opacity: 0;
+  --scale: 0.5;
+
   display: inline-block;
   position: relative;
   z-index: 1;
@@ -18,10 +22,6 @@
   cursor: pointer;
 
   &::before {
-    --translateX: 100%;
-    --opacity: 0;
-    --scale: 0.5;
-
     content: '';
     position: absolute;
     z-index: -1;
@@ -37,12 +37,6 @@
     background-color: darken($color-button-bg-default, 25%);
   }
 
-  &:hover::before {
-    --translateX: 0;
-    --opacity: 1;
-    --scale: 1.4;
-  }
-
   &:disabled {
     opacity: 0.5;
   }
@@ -55,4 +49,11 @@
   &::before {
     background-color: $color-grey;
   }
+}
+
+.button:hover,
+.hover {
+  --translateX: 0;
+  --opacity: 1;
+  --scale: 1.4;
 }

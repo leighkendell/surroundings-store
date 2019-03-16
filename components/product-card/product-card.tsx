@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '..';
 import { Product } from '../../interfaces';
 import { formatCurrency, getTheme } from '../../lib/helpers';
@@ -11,6 +11,7 @@ interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
 const ProductCard: React.FunctionComponent<Props> = React.memo(
   React.forwardRef<HTMLAnchorElement, Props>(({ data: { handle, title, priceRange, images, tags } }, ref) => {
+    const [hover, setHover] = useState(false);
     const { amount, currencyCode } = priceRange.minVariantPrice;
     const price = formatCurrency(currencyCode, amount);
     const [mainImage] = images.edges;
@@ -18,14 +19,20 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
 
     return (
       <Link href={`/product?handle=${handle}&title=${title}`} as={`/product/${handle}`}>
-        <a className={styles.card} style={{ '--theme': `var(--${theme})` }} ref={ref}>
+        <a
+          className={styles.card}
+          style={{ '--theme': `var(--${theme})` }}
+          ref={ref}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+        >
           <div className={styles.image}>
             {mainImage && <img src={mainImage.node.transformedSrc} alt={mainImage.node.altText} />}
           </div>
           <div className={styles.content}>
             <span className={styles.title}>{title}</span>
             <strong className={styles.price}>{price}</strong>
-            <Button>View product</Button>
+            <Button hover={hover}>View product</Button>
           </div>
         </a>
       </Link>
