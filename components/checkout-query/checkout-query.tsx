@@ -13,7 +13,7 @@ interface Props {
 
 const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
   return (
-    <Query<{ checkoutId: string }> query={getCheckoutId}>
+    <Query<{ checkoutId: string }> query={getCheckoutId} fetchPolicy="cache-only">
       {({ data: { checkoutId } }) => {
         if (checkoutId) {
           return (

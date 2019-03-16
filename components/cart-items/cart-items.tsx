@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import useResizeAware from 'react-resize-aware';
+import React, { useEffect, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { CartItem, CartSection, Heading, Notification } from '..';
 import { CheckoutLineItemEdge } from '../../interfaces';
@@ -10,15 +9,24 @@ interface Props {
 }
 
 const CartItems: React.FunctionComponent<Props> = React.memo(({ products }) => {
-  const [updating, setUpdating] = useState(false);
+  // Refs
+  const listEl = React.createRef<HTMLUListElement>();
 
-  const [resizeListener, sizes] = useResizeAware();
-  const heightSpring = useSpring({ height: sizes.height ? sizes.height : 'auto' });
+  // State
+  const [updating, setUpdating] = useState(false);
+  const [listHeight, updateListHeight] = useState('0px');
+
+  // Springs
+  const heightSpring = useSpring({
+    height: listHeight,
+  });
+
   const updatingSpring = useSpring({
     opacity: updating ? 0.5 : 1,
     pointerEvents: updating ? 'none' : 'auto',
   });
 
+  // Sort products by variant ID
   const sortedProducts = products.sort((a, b) => {
     if (a.node.variant.id < b.node.variant.id) {
       return -1;
@@ -29,12 +37,16 @@ const CartItems: React.FunctionComponent<Props> = React.memo(({ products }) => {
     return 0;
   });
 
+  useEffect(() => {
+    const height = listEl.current ? listEl.current.offsetHeight : '';
+    updateListHeight(`${height}px`);
+  });
+
   return (
     <CartSection>
       <Heading type="h3">Products</Heading>
       <animated.div style={heightSpring}>
-        <animated.ul className={styles.items} style={updatingSpring}>
-          {resizeListener}
+        <animated.ul className={styles.items} style={updatingSpring} ref={listEl}>
           {sortedProducts.map(product => {
             const { id } = product.node;
             return <CartItem key={id} data={product} setUpdating={setUpdating} />;
