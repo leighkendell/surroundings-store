@@ -53,7 +53,7 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
                   <ProductDetailsGridItem>
                     <ProductImage images={images} />
                   </ProductDetailsGridItem>
-                  <ProductDetailsGridItem>
+                  <ProductDetailsGridItem slideIn={true}>
                     <HeaderTextGroup firstHeading={title} secondHeading={price} />
                     <Text>{description}</Text>
                     <ProductForm variants={variants} />
