@@ -1,18 +1,25 @@
 import gql from 'graphql-tag';
 
+const ProductFragment = gql`
+  fragment ProductFragment on Product {
+    id
+    handle
+    title
+    priceRange {
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    description
+    tags
+  }
+`;
+
 export const productByHandle = gql`
   query productByHandle($handle: String!) {
     productByHandle(handle: $handle) {
-      id
-      title
-      priceRange {
-        minVariantPrice {
-          amount
-          currencyCode
-        }
-      }
-      description
-      tags
+      ...ProductFragment
       images(first: 1) {
         edges {
           node {
@@ -33,6 +40,7 @@ export const productByHandle = gql`
       }
     }
   }
+  ${ProductFragment}
 `;
 
 export const collectionByHandle = gql`
@@ -41,19 +49,11 @@ export const collectionByHandle = gql`
       products(first: 6) {
         edges {
           node {
-            handle
-            id
-            title
-            tags
-            priceRange {
-              minVariantPrice {
-                amount
-                currencyCode
-              }
-            }
+            ...ProductFragment
             images(first: 1) {
               edges {
                 node {
+                  id
                   altText
                   transformedSrc(maxWidth: 400, scale: 2, preferredContentType: WEBP)
                 }
@@ -64,4 +64,5 @@ export const collectionByHandle = gql`
       }
     }
   }
+  ${ProductFragment}
 `;

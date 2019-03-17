@@ -1,6 +1,7 @@
 import React from 'react';
 import { animated, useSpring } from 'react-spring';
 import { useMediaLayout } from 'use-media';
+import { isBrowser } from '../../lib/helpers';
 import styleVars from '../../sass/_variables.scss';
 import styles from './nav-list.scss';
 
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const NavList: React.FunctionComponent<Props> = React.memo(({ open, children }) => {
-  const isWide = useMediaLayout({ minWidth: parseInt(styleVars.breakpointMedium, 10) });
+  const isWide = isBrowser ? useMediaLayout({ minWidth: parseInt(styleVars.breakpointMedium, 10) }) : false;
 
   const spring = useSpring({
     from: { transform: 'translateY(0%)' },

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button } from '..';
 import { Product } from '../../interfaces';
 import { formatCurrency, getTheme } from '../../lib/helpers';
@@ -18,7 +18,7 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
     const theme = getTheme(tags) || 'theme-1';
 
     return (
-      <Link href={`/product?handle=${handle}&title=${title}`} as={`/product/${handle}`}>
+      <Link href={`/product?handle=${handle}`} as={`/product/${handle}`} prefetch={true}>
         <a
           className={styles.card}
           style={{ '--theme': `var(--${theme})` }}

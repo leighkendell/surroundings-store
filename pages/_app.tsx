@@ -1,6 +1,5 @@
 import { ApolloClient } from 'apollo-boost';
 import App, { AppProps, Container } from 'next/app';
-import Router from 'next/router';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import { Cart, Footer, Main, Nav } from '../components';

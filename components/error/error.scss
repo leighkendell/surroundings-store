@@ -1,0 +1,17 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+
+.error {
+  @include card-shadow;
+
+  padding: $spacing-small $spacing-medium;
+  border-radius: 4px;
+  background-color: $color-light;
+  font-weight: bold;
+  text-align: center;
+}
+
+.icon {
+  display: block;
+  font-size: $font-size-large;
+}

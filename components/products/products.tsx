@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { ProductCards, ProductGrid, Section } from '..';
+import { Error, Loading, ProductCards, ProductGrid, Section } from '..';
 import { collectionByHandle } from '../../graphql/products';
 import { Collection } from '../../interfaces';
 import Wrapper from '../wrapper/wrapper';
@@ -13,18 +13,20 @@ interface Data {
   collectionByHandle: Collection;
 }
 
+const errorMessage = <Error>We're having issues loading the products. Please try again later.</Error>;
+
 const Products: React.FunctionComponent<Props> = ({ handle }) => (
   <Query<Data> query={collectionByHandle} variables={{ handle }}>
     {({ data, loading, error }) => {
       if (loading) {
-        return null;
+        return <Loading />;
       }
 
       if (error) {
-        return null;
+        return errorMessage;
       }
 
-      if (data) {
+      if (data && data.collectionByHandle) {
         const products = data.collectionByHandle.products.edges;
 
         return (
@@ -37,6 +39,8 @@ const Products: React.FunctionComponent<Props> = ({ handle }) => (
           </Section>
         );
       }
+
+      return errorMessage;
     }}
   </Query>
 );

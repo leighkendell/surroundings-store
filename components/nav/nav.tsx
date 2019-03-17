@@ -21,7 +21,7 @@ const Nav: React.FunctionComponent = () => (
                     open={isOpen}
                     onClick={() => updateNavigationOpenMutation({ variables: { isOpen: !isOpen } })}
                   />
-                  <Link href="/">
+                  <Link href="/" prefetch={true}>
                     <a className={styles.logo} aria-label="Link to home page">
                       <Logo />
                     </a>

@@ -2,9 +2,10 @@ import { SingletonRouter, withRouter } from 'next/router';
 import React from 'react';
 import { Query } from 'react-apollo';
 import {
-  HeaderText,
+  Error,
   HeaderTextGroup,
   Layout,
+  Loading,
   ProductDetailsGrid,
   ProductDetailsGridItem,
   ProductForm,
@@ -25,18 +26,18 @@ interface Data {
 }
 
 const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
-  const { handle, title: initialTitle } = router.query;
+  const { handle } = router.query;
 
   return (
     <Layout>
       <Query<Data> query={productByHandle} variables={{ handle }}>
         {({ data, loading, error }) => {
           if (loading) {
-            return <HeaderText>{initialTitle}</HeaderText>;
+            return <Loading />;
           }
 
           if (error) {
-            return null;
+            return <Error>We're having issues loading this product. Please try again later.</Error>;
           }
 
           if (data) {

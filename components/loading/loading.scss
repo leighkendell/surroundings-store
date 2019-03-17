@@ -1,0 +1,10 @@
+@import '../../sass/variables';
+
+.icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border: 8px solid $color-dark;
+  border-radius: 100%;
+  border-right-color: transparent;
+}
