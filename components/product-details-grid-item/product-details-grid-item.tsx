@@ -15,6 +15,7 @@ const ProductDetailsGridItem: React.FunctionComponent<Props> = ({ children, slid
     },
     opacity: 1,
     transform: `${slideIn ? 'translateX(0px)' : ''}`,
+    delay: slideIn ? 250 : 0,
   });
 
   return (
