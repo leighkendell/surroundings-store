@@ -15,12 +15,9 @@ const Nav: React.FunctionComponent = () => (
         <nav className={styles.nav} role="navigation">
           <Wrapper additionalClass={styles.wrapper} collapseTop={true} collapseBottom={true}>
             <Mutation mutation={updateNavigationOpen}>
-              {updateNavigationOpenMutation => (
+              {mutate => (
                 <>
-                  <NavToggle
-                    open={isOpen}
-                    onClick={() => updateNavigationOpenMutation({ variables: { isOpen: !isOpen } })}
-                  />
+                  <NavToggle open={isOpen} onClick={() => mutate({ variables: { isOpen: !isOpen } })} />
                   <Link href="/" prefetch={true}>
                     <a className={styles.logo} aria-label="Link to home page">
                       <Logo />

@@ -3,6 +3,7 @@ const sass = require('@zeit/next-sass');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const optimizedImages = require('next-optimized-images');
 const withPlugins = require('next-compose-plugins');
+const bundleAnalyzer = require('@zeit/next-bundle-analyzer');
 
 const nextConfig = {
   webpack: (config, options) => {
@@ -26,4 +27,18 @@ module.exports = withPlugins([
   }],
   [typescript],
   [optimizedImages],
+  [bundleAnalyzer, {
+    analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
+    analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
+    bundleAnalyzerConfig: {
+      browser: {
+        analyzerMode: 'static',
+        reportFilename: '../bundles/client.html'
+      },
+      server: {
+        analyzerMode: 'static',
+        reportFilename: '../bundles/server.html'
+      }
+    }
+  }]
 ], nextConfig);
