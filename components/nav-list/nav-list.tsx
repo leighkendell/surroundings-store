@@ -1,5 +1,7 @@
-import classNames from 'classnames';
 import React from 'react';
+import { animated, useSpring } from 'react-spring';
+import { useMediaLayout } from 'use-media';
+import styleVars from '../../sass/_variables.scss';
 import styles from './nav-list.scss';
 
 interface Props {
@@ -7,9 +9,22 @@ interface Props {
 }
 
 const NavList: React.FunctionComponent<Props> = React.memo(({ open, children }) => {
-  const className = classNames(styles.list, { [styles.open]: open });
+  const isWide = useMediaLayout({ minWidth: parseInt(styleVars.breakpointMedium, 10) });
 
-  return <ul className={className}>{children}</ul>;
+  const spring = useSpring({
+    from: { transform: 'translateY(0%)' },
+    to: [
+      { visibility: open ? 'visible' : '' },
+      { transform: `translateY(${open ? '-100%' : '0%'})` },
+      { visibility: open ? '' : 'hidden' },
+    ],
+  });
+
+  return (
+    <animated.ul className={styles.list} style={isWide ? {} : spring}>
+      {children}
+    </animated.ul>
+  );
 });
 
 export default NavList;

@@ -50,3 +50,10 @@ $font-size-emphasized: 1.333rem;
 $font-size-default: 1rem;
 $font-size-small: 0.75rem;
 $font-size-base: 16px;
+
+:export {
+  breakpointSmall: map-get($breakpoints, 'small');
+  breakpointMedium: map-get($breakpoints, 'medium');
+  breakpointLarge: map-get($breakpoints, 'large');
+  breakpointXLarge: map-get($breakpoints, 'x-large');
+}
