@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Mutation, MutationFn } from 'react-apollo';
-import { Input } from '..';
+import { Image, Input } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
 import { Checkout, CheckoutLineItemEdge } from '../../interfaces';
 import { formatCurrency, getUpdatedLineItems } from '../../lib/helpers';
@@ -62,7 +62,7 @@ const CartItem: React.FunctionComponent<Props> = React.memo(({ data, setUpdating
   return (
     <li className={styles.item}>
       <div className={styles.image}>
-        <img src={variant.image.transformedSrc} alt={variant.image.altText} />
+        <Image src={variant.image.transformedSrc} alt={variant.image.altText} />
       </div>
       <div className={styles.details}>
         <span>{title}</span>

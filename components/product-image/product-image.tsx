@@ -1,5 +1,6 @@
 import React from 'react';
 import { animated, useSpring } from 'react-spring';
+import { Image } from '..';
 import { ImageConnection } from '../../interfaces';
 import styles from './product-image.scss';
 
@@ -17,7 +18,7 @@ const ProductImage: React.FunctionComponent<Props> = ({ images }) => {
     <>
       {images.edges.map(({ node }) => (
         <animated.div className={styles.wrapper} key={node.id} style={spring}>
-          <img src={node.transformedSrc} alt={node.altText} className={styles.image} />
+          <Image src={node.transformedSrc} alt={node.altText} className={styles.image} />
         </animated.div>
       ))}
     </>

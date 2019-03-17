@@ -17,7 +17,7 @@ const CheckoutFragment = gql`
             title
             image {
               altText
-              transformedSrc(maxWidth: 40, scale: 2, preferredContentType: WEBP)
+              transformedSrc(maxWidth: 40, scale: 2, preferredContentType: PNG)
             }
             price
           }

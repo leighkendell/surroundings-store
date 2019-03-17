@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Button } from '..';
+import { Button, Image } from '..';
 import { Product } from '../../interfaces';
 import { formatCurrency, getTheme } from '../../lib/helpers';
 import styles from './product-card.scss';
@@ -27,7 +27,7 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
           onMouseLeave={() => setHover(false)}
         >
           <div className={styles.image}>
-            {mainImage && <img src={mainImage.node.transformedSrc} alt={mainImage.node.altText} />}
+            {mainImage && <Image src={mainImage.node.transformedSrc} alt={mainImage.node.altText} />}
           </div>
           <div className={styles.content}>
             <span className={styles.title}>{title}</span>

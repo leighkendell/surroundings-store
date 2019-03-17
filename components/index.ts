@@ -16,6 +16,7 @@ export { default as FormGroup } from './form-group/form-group';
 export { default as HeaderText } from './header-text/header-text';
 export { default as HeaderTextGroup } from './header-text-group/header-text-group';
 export { default as Heading } from './heading/heading';
+export { default as Image } from './image/image';
 export { default as Input } from './input/input';
 export { default as InputSelect } from './input-select/input-select';
 export { default as Label } from './label/label';

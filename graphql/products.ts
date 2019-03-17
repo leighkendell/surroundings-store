@@ -25,7 +25,7 @@ export const productByHandle = gql`
           node {
             id
             altText
-            transformedSrc(maxWidth: 560, scale: 2, preferredContentType: WEBP)
+            transformedSrc(maxWidth: 560, scale: 2, preferredContentType: PNG)
           }
         }
       }
@@ -55,7 +55,7 @@ export const collectionByHandle = gql`
                 node {
                   id
                   altText
-                  transformedSrc(maxWidth: 400, scale: 2, preferredContentType: WEBP)
+                  transformedSrc(maxWidth: 400, scale: 2, preferredContentType: PNG)
                 }
               }
             }
