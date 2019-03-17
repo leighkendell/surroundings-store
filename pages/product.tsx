@@ -25,7 +25,7 @@ interface Data {
   productByHandle: ProductInterface;
 }
 
-const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
+const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
   const { handle } = router.query;
 
   return (
@@ -66,6 +66,6 @@ const ProductPage: React.FunctionComponent<Props> = ({ router }) => {
       </Query>
     </Layout>
   );
-};
+});
 
 export default withRouter(ProductPage);

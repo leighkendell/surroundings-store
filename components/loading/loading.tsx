@@ -7,18 +7,22 @@ const Loading: React.FunctionComponent = () => {
   let angle = 0;
 
   const spring = useSpring({
-    from: { transform: 'rotate(0turn)', opacity: 0 },
+    from: { transform: 'rotate(0turn)' },
     to: async next => {
       while (1) {
-        angle += 1;
-        await next({ transform: `rotate(${angle}turn)`, opacity: 1 });
+        await next({ transform: `rotate(${(angle += 0.25)}turn)` });
+        await next({ transform: `rotate(${(angle += 0.75)}turn)` });
+        await next({ transform: `rotate(${(angle += 0.5)}turn)` });
+        await next({ transform: `rotate(${(angle += 1)}turn)` });
       }
     },
   });
 
   return (
     <Wrapper>
-      <animated.div className={styles.icon} style={spring} />
+      <div className={styles.container}>
+        <animated.span className={styles.icon} style={spring} />
+      </div>
     </Wrapper>
   );
 };
