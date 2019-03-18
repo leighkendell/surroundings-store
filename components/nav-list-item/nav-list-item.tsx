@@ -1,24 +1,17 @@
 import classNames from 'classnames';
 import Link from 'next/link';
-import { SingletonRouter, withRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Mutation } from 'react-apollo';
 import { updateNavigationOpen } from '../../graphql/navigation';
 import styles from './nav-list-item.scss';
 
 interface Props {
   href: string;
-  router: SingletonRouter;
+  active?: boolean;
 }
 
-const NavListItem: React.FunctionComponent<Props> = ({ children, href, router }) => {
-  const { pathname } = router;
-  const [active, setActive] = useState(false);
+const NavListItem: React.FunctionComponent<Props> = React.memo(({ children, href, active }) => {
   const className = classNames(styles.navListItem, { [styles.navListItemActive]: active });
-
-  useEffect(() => {
-    setActive(href === pathname);
-  });
 
   return (
     <li className={className}>
@@ -33,6 +26,6 @@ const NavListItem: React.FunctionComponent<Props> = ({ children, href, router })
       </Mutation>
     </li>
   );
-};
+});
 
-export default withRouter(NavListItem);
+export default NavListItem;

@@ -1,43 +1,51 @@
 import Link from 'next/link';
+import { SingletonRouter, withRouter } from 'next/router';
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
 import { CartToggle, NavList, NavListItem, NavToggle, Wrapper } from '..';
 import { getNavigationOpen, updateNavigationOpen } from '../../graphql/navigation';
 import Logo from '../../svg/surroundings-logo.svg';
+import { navItems } from '../../utils/nav-items';
 import styles from './nav.scss';
 
-const Nav: React.FunctionComponent = () => (
-  <Query query={getNavigationOpen}>
-    {({ data }) => {
-      const { isOpen } = data.navigation;
+interface Props {
+  router: SingletonRouter;
+}
 
-      return (
-        <nav className={styles.nav} role="navigation">
-          <Wrapper additionalClass={styles.wrapper} collapseTop={true} collapseBottom={true}>
-            <Mutation mutation={updateNavigationOpen}>
-              {mutate => (
-                <>
-                  <NavToggle open={isOpen} onClick={() => mutate({ variables: { isOpen: !isOpen } })} />
-                  <Link href="/" prefetch={true}>
-                    <a className={styles.logo} aria-label="Link to home page">
-                      <Logo />
-                    </a>
-                  </Link>
-                  <NavList open={isOpen}>
-                    <NavListItem href="/">Home</NavListItem>
-                    <NavListItem href="/clothing">Clothing</NavListItem>
-                    <NavListItem href="/music">Music</NavListItem>
-                    <NavListItem href="/contact">Contact</NavListItem>
-                  </NavList>
-                  <CartToggle />
-                </>
-              )}
-            </Mutation>
-          </Wrapper>
-        </nav>
-      );
-    }}
-  </Query>
-);
+const Nav: React.FunctionComponent<Props> = React.memo(({ router }) => {
+  const { pathname } = router;
 
-export default Nav;
+  return (
+    <nav className={styles.nav} role="navigation">
+      <Wrapper additionalClass={styles.wrapper} collapseTop={true} collapseBottom={true}>
+        <Query query={getNavigationOpen}>
+          {({ data }) => {
+            const { isOpen } = data.navigation;
+            return (
+              <>
+                <Mutation mutation={updateNavigationOpen}>
+                  {mutate => <NavToggle open={isOpen} onClick={() => mutate({ variables: { isOpen: !isOpen } })} />}
+                </Mutation>
+                <Link href="/" prefetch={true}>
+                  <a className={styles.logo} aria-label="Link to home page">
+                    <Logo />
+                  </a>
+                </Link>
+                <NavList open={isOpen}>
+                  {navItems.map(({ path, name }) => (
+                    <NavListItem href={path} key={name} active={path === pathname}>
+                      {name}
+                    </NavListItem>
+                  ))}
+                </NavList>
+                <CartToggle />
+              </>
+            );
+          }}
+        </Query>
+      </Wrapper>
+    </nav>
+  );
+});
+
+export default withRouter(Nav);
