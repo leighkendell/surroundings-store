@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { getCheckout, getCheckoutId } from '../../graphql/checkout';
 import { Checkout } from '../../interfaces';
+import { initCheckout } from '../../lib/helpers';
 
 interface Data {
   node: Checkout;
@@ -14,16 +15,18 @@ interface Props {
 const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Query<{ checkoutId: string }> query={getCheckoutId} fetchPolicy="cache-only">
-      {({ data: { checkoutId } }) => {
+      {({ data: { checkoutId }, client }) => {
         if (checkoutId) {
           return (
-            <Query<Data> query={getCheckout} variables={{ checkoutId }}>
+            <Query<Data>
+              query={getCheckout}
+              variables={{ checkoutId }}
+              onError={() => {
+                initCheckout(client, true);
+              }}
+            >
               {({ loading, data, error }) => {
-                if (loading) {
-                  return null;
-                }
-
-                if (error) {
+                if (loading || error) {
                   return null;
                 }
 
