@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import { SingletonRouter, withRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { Mutation } from 'react-apollo';
+import { updateNavigationOpen } from '../../graphql/navigation';
 import styles from './nav-list-item.scss';
 
 interface Props {
@@ -20,9 +22,15 @@ const NavListItem: React.FunctionComponent<Props> = ({ children, href, router })
 
   return (
     <li className={className}>
-      <Link href={href} prefetch={true}>
-        <a>{children}</a>
-      </Link>
+      <Mutation mutation={updateNavigationOpen}>
+        {mutate => (
+          <Link href={href} prefetch={true}>
+            <a onClick={() => mutate({ variables: { isOpen: false } })} role="button">
+              {children}
+            </a>
+          </Link>
+        )}
+      </Mutation>
     </li>
   );
 };

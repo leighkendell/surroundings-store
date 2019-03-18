@@ -20,7 +20,7 @@ const Loading: React.FunctionComponent = () => {
 
   return (
     <Wrapper>
-      <div className={styles.container}>
+      <div className={styles.container} aria-label="Loading">
         <animated.span className={styles.icon} style={spring} />
       </div>
     </Wrapper>
