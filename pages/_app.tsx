@@ -2,21 +2,32 @@ import { ApolloClient } from 'apollo-boost';
 import App, { AppProps, Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
-import { Cart, Footer, Main, Nav } from '../components';
-import { createCheckout, updateCheckoutId } from '../graphql/checkout';
+import { Cart, Error, Footer, Main, Nav, Section } from '../components';
+import { createCheckout, getCheckoutId, updateCheckoutId } from '../graphql/checkout';
 import withApolloClient from '../lib/with-apollo-client';
 
 interface MainAppProps extends AppProps {
   apolloClient: ApolloClient<{}>;
 }
 
+const cartError = (
+  <Section variation="secondary">
+    <Error>Something went wrong, you will not be able to add items to your cart. Please try again later.</Error>
+  </Section>
+);
+
 class MainApp extends App<MainAppProps> {
+  public state = {
+    cartErrorVisible: false,
+  };
+
   public componentDidMount() {
     this.initCheckout();
   }
 
   public render() {
     const { Component, pageProps, apolloClient } = this.props;
+    const { cartErrorVisible } = this.state;
 
     return (
       <Container>
@@ -24,6 +35,7 @@ class MainApp extends App<MainAppProps> {
           <Nav />
           <Cart />
           <Main>
+            {cartErrorVisible && cartError}
             <Component {...pageProps} />
           </Main>
           <Footer />
@@ -36,7 +48,11 @@ class MainApp extends App<MainAppProps> {
     const { apolloClient } = this.props;
 
     // Exit if the checkout already exists
-    if (localStorage.getItem('shopify-checkout-id')) {
+    const checkoutIdQuery = await apolloClient.query({
+      query: getCheckoutId,
+    });
+
+    if (checkoutIdQuery.data.checkoutId) {
       return;
     }
 
@@ -57,7 +73,7 @@ class MainApp extends App<MainAppProps> {
 
       localStorage.setItem('shopify-checkout-id', checkout.id);
     } catch {
-      // TODO: Error handling
+      this.setState({ cartErrorVisible: true });
     }
   }
 }
