@@ -7,6 +7,7 @@ const bundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const offline = require('next-offline');
 
 const nextConfig = {
+  target: 'serverless',
   webpack: (config, options) => {
     // Do not run type checking twice:
     if (options.isServer) {
@@ -15,7 +16,7 @@ const nextConfig = {
       }));
     }
     return config
-  }
+  },
 };
 
 module.exports = withPlugins([
@@ -42,5 +43,26 @@ module.exports = withPlugins([
       }
     }
   }],
-  [offline]
+  [offline, {
+    workboxOpts: {
+      runtimeCaching: [
+        {
+          handler: 'networkFirst',
+          options: {
+            cacheName: 'https-calls',
+            cacheableResponse: {
+              statuses: [0, 200],
+            },
+            expiration: {
+              maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
+              maxEntries: 150,
+            },
+            networkTimeoutSeconds: 15,
+          },
+          urlPattern: /^https?.*/,
+        },
+      ],
+      swDest: 'static/service-worker.js',
+    }
+  }]
 ], nextConfig);
