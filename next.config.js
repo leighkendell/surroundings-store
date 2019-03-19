@@ -4,6 +4,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const optimizedImages = require('next-optimized-images');
 const withPlugins = require('next-compose-plugins');
 const bundleAnalyzer = require('@zeit/next-bundle-analyzer');
+const offline = require('next-offline');
 
 const nextConfig = {
   webpack: (config, options) => {
@@ -40,5 +41,6 @@ module.exports = withPlugins([
         reportFilename: '../bundles/server.html'
       }
     }
-  }]
+  }],
+  [offline]
 ], nextConfig);

@@ -1,6 +1,8 @@
 const express = require('express');
 const next = require('next');
+const { join } = require('path');
 
+const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -19,14 +21,22 @@ app.prepare()
       res.redirect(301, '/');
     });
 
+    // Serve the service-worker.js required for workbox
+    server.get('/service-worker.js', ServiceWorker());
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });
 
-    server.listen(3000, (err) => {
+    server.listen(port, (err) => {
       if (err) { throw err }
-    })
+    });
   })
   .catch(() => {
     process.exit(1);
   });
+
+const ServiceWorker = () => (req, res) => {
+  const filePath = join(__dirname, '.next', 'service-worker.js');
+  app.serveStatic(req, res, filePath);
+};

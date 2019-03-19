@@ -1,0 +1,20 @@
+{
+  "short_name": "Store",
+  "name": "Surroundings Store",
+  "icons": [
+    {
+      "src": "./icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#f1f1f1",
+  "display": "standalone",
+  "theme_color": "#2851dc"
+}
