@@ -14,7 +14,7 @@ interface Props {
 
 const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
   return (
-    <Query<{ checkoutId: string }> query={getCheckoutId} ssr={false}>
+    <Query<{ checkoutId: string }> query={getCheckoutId}>
       {({ data: checkout, client }) => {
         if (checkout) {
           return (
@@ -24,7 +24,6 @@ const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
               onError={() => {
                 initCheckout(client, true);
               }}
-              ssr={false}
             >
               {({ loading, data, error }) => {
                 if (loading || error) {
