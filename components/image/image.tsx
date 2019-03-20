@@ -9,8 +9,10 @@ const Image: React.FunctionComponent<Props> = ({ src, imageLoaded, ...props }) =
   const imageRef = React.createRef<HTMLImageElement>();
 
   const handleImageLoaded = () => {
-    imageRef.current.removeEventListener('load', handleImageLoaded);
-    imageLoaded();
+    if (imageRef.current && imageLoaded) {
+      imageRef.current.removeEventListener('load', handleImageLoaded);
+      imageLoaded();
+    }
   };
 
   useEffect(() => {
@@ -19,10 +21,12 @@ const Image: React.FunctionComponent<Props> = ({ src, imageLoaded, ...props }) =
     }
 
     // Fire imageLoaded function when the image loads
-    if (imageRef.current.complete) {
-      handleImageLoaded();
-    } else {
-      imageRef.current.addEventListener('load', handleImageLoaded);
+    if (imageRef.current) {
+      if (imageRef.current.complete) {
+        handleImageLoaded();
+      } else {
+        imageRef.current.addEventListener('load', handleImageLoaded);
+      }
     }
   }, []);
 

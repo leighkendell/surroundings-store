@@ -1,4 +1,4 @@
-import { ApolloClient, gql, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloClient, gql, HttpLink, InMemoryCache, Resolvers } from 'apollo-boost';
 import fetch from 'isomorphic-unfetch';
 import { isBrowser } from './helpers';
 
@@ -29,7 +29,7 @@ const create = (initialState?: any) => {
     }
   `;
 
-  const resolvers = {
+  const resolvers: Resolvers = {
     Mutation: {
       updateNavigationOpen: (_, { isOpen }, { cache }) => {
         const data = {

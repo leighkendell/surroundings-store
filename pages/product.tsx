@@ -17,8 +17,14 @@ import { productByHandle } from '../graphql/products';
 import { Product as ProductInterface } from '../interfaces';
 import { formatCurrency, getTheme } from '../lib/helpers';
 
+interface Router extends SingletonRouter {
+  query: {
+    handle: string;
+  };
+}
+
 interface Props {
-  router: SingletonRouter;
+  router: Router;
 }
 
 interface Data {

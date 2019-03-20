@@ -25,20 +25,23 @@ const Cart: React.FunctionComponent = () => (
 
       return (
         <Query<CartInterface> query={getCart}>
-          {({ data: { cart } }) => {
-            return (
-              <CartWrapper cart={cart}>
-                <Heading type="h2">Your cart</Heading>
-                {isCartEmpty ? (
-                  <EmptyMessage />
-                ) : (
-                  <>
-                    <CartItems products={lineItems.edges} />
-                    <CartFooter webUrl={webUrl} totalPrice={formattedPrice} />
-                  </>
-                )}
-              </CartWrapper>
-            );
+          {({ data }) => {
+            if (data) {
+              return (
+                <CartWrapper cart={data.cart}>
+                  <Heading type="h2">Your cart</Heading>
+                  {isCartEmpty ? (
+                    <EmptyMessage />
+                  ) : (
+                    <>
+                      <CartItems products={lineItems.edges} />
+                      <CartFooter webUrl={webUrl} totalPrice={formattedPrice} />
+                    </>
+                  )}
+                </CartWrapper>
+              );
+            }
+            return null;
           }}
         </Query>
       );
