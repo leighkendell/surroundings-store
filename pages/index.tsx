@@ -3,7 +3,7 @@ import { HeaderText, Layout, Products } from '../components';
 
 const IndexPage: React.FunctionComponent = () => {
   return (
-    <Layout>
+    <Layout pageTitle="Home">
       <HeaderText>Store home</HeaderText>
       <Products handle="store-home" />
     </Layout>

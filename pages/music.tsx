@@ -3,7 +3,7 @@ import { HeaderText, Layout, Products } from '../components';
 
 const MusicPage: React.FunctionComponent = () => {
   return (
-    <Layout>
+    <Layout pageTitle="Music">
       <HeaderText>Music</HeaderText>
       <Products handle="music" />
     </Layout>

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { SingletonRouter, withRouter } from 'next/router';
 import React from 'react';
 import { Query } from 'react-apollo';
@@ -35,7 +36,7 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
   const { handle } = router.query;
 
   return (
-    <Layout>
+    <Layout pageTitle="Loading...">
       <Query<Data> query={productByHandle} variables={{ handle }}>
         {({ data, loading, error }) => {
           if (loading) {
@@ -54,18 +55,23 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
             const theme = getTheme(tags);
 
             return (
-              <Section>
-                <ProductDetailsGrid theme={theme}>
-                  <ProductDetailsGridItem>
-                    <ProductImage images={images} />
-                  </ProductDetailsGridItem>
-                  <ProductDetailsGridItem slideIn={true}>
-                    <HeaderTextGroup firstHeading={title} secondHeading={price} />
-                    <Text>{description}</Text>
-                    <ProductForm variants={variants} />
-                  </ProductDetailsGridItem>
-                </ProductDetailsGrid>
-              </Section>
+              <>
+                <Head>
+                  <title>{title} • Surroundings Store</title>
+                </Head>
+                <Section>
+                  <ProductDetailsGrid theme={theme}>
+                    <ProductDetailsGridItem>
+                      <ProductImage images={images} />
+                    </ProductDetailsGridItem>
+                    <ProductDetailsGridItem slideIn={true}>
+                      <HeaderTextGroup firstHeading={title} secondHeading={price} />
+                      <Text>{description}</Text>
+                      <ProductForm variants={variants} />
+                    </ProductDetailsGridItem>
+                  </ProductDetailsGrid>
+                </Section>
+              </>
             );
           }
         }}

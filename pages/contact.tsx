@@ -3,7 +3,7 @@ import { HeaderText, Layout } from '../components';
 
 const ContactPage: React.FunctionComponent = () => {
   return (
-    <Layout>
+    <Layout pageTitle="Contact">
       <HeaderText>Contact</HeaderText>
     </Layout>
   );

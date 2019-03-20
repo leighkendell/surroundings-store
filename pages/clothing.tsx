@@ -3,7 +3,7 @@ import { HeaderText, Layout, Products } from '../components';
 
 const ClothingPage: React.FunctionComponent = () => {
   return (
-    <Layout>
+    <Layout pageTitle="Clothing">
       <HeaderText>Clothing</HeaderText>
       <Products handle="clothing" />
     </Layout>
