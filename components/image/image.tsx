@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {}
+interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
+  imageLoaded?: () => void;
+}
 
-const Image: React.FunctionComponent<Props> = ({ src, ...props }) => {
+const Image: React.FunctionComponent<Props> = ({ src, imageLoaded, ...props }) => {
   const source = `https://res.cloudinary.com/dklnli1vg/image/fetch/f_auto/${src}`;
-  return <img src={source} {...props} />;
+  const imageRef = React.createRef<HTMLImageElement>();
+
+  const handleImageLoaded = () => {
+    imageRef.current.removeEventListener('load', handleImageLoaded);
+    imageLoaded();
+  };
+
+  useEffect(() => {
+    if (!imageLoaded) {
+      return;
+    }
+
+    // Fire imageLoaded function when the image loads
+    if (imageRef.current.complete) {
+      handleImageLoaded();
+    } else {
+      imageRef.current.addEventListener('load', handleImageLoaded);
+    }
+  }, []);
+
+  return <img src={source} ref={imageRef} {...props} />;
 };
 
 export default Image;

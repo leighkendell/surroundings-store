@@ -29,7 +29,7 @@
     height: 80%;
     transform: translate(-50%, -50%) scale(var(--scale));
     object-fit: cover;
-    transition: 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 
     .card:hover & {
       --scale: 1.1;
