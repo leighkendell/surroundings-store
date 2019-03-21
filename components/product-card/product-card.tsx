@@ -27,7 +27,7 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
           onMouseLeave={() => setHover(false)}
         >
           <div className={styles.image}>
-            {mainImage && <Image src={mainImage.node.transformedSrc} alt={mainImage.node.altText} />}
+            {mainImage && <Image src={mainImage.node.transformedSrc} alt={mainImage.node.altText || title} />}
           </div>
           <div className={styles.content}>
             <span className={styles.title}>{title}</span>

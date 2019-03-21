@@ -9,7 +9,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const NavToggle: React.FunctionComponent<Props> = React.memo(({ open, ...props }) => {
   const className = classNames(styles.navToggle, { [styles.navToggleOpen]: open });
 
-  return <button className={className} {...props} />;
+  return <button aria-haspopup={true} aria-expanded={open} aria-label="Menu" className={className} {...props} />;
 });
 
 export default NavToggle;

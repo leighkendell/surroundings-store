@@ -4,7 +4,7 @@ interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   imageLoaded?: () => void;
 }
 
-const Image: React.FunctionComponent<Props> = ({ src, imageLoaded, ...props }) => {
+const Image: React.FunctionComponent<Props> = ({ src, alt, imageLoaded, ...props }) => {
   const source = `https://res.cloudinary.com/dklnli1vg/image/fetch/f_auto/${src}`;
   const imageRef = React.createRef<HTMLImageElement>();
 
@@ -30,7 +30,7 @@ const Image: React.FunctionComponent<Props> = ({ src, imageLoaded, ...props }) =
     }
   }, []);
 
-  return <img src={source} ref={imageRef} {...props} />;
+  return <img src={source} alt={alt} ref={imageRef} {...props} />;
 };
 
 export default Image;

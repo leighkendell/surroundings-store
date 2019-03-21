@@ -32,7 +32,7 @@ const CartWrapper: React.FunctionComponent<Props> = ({ children, cart }) => {
   });
 
   return (
-    <>
+    <aside>
       <Mutation mutation={updateCartOpen}>
         {updateCartOpenMutation => (
           <animated.div
@@ -45,10 +45,10 @@ const CartWrapper: React.FunctionComponent<Props> = ({ children, cart }) => {
           />
         )}
       </Mutation>
-      <animated.aside className={styles.wrapper} style={wrapperSpring}>
+      <animated.div className={styles.wrapper} style={wrapperSpring}>
         {children}
-      </animated.aside>
-    </>
+      </animated.div>
+    </aside>
   );
 };
 

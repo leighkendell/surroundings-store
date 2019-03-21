@@ -28,7 +28,12 @@ const ProductImage: React.FunctionComponent<Props> = ({ images }) => {
     <>
       {images.edges.map(({ node }) => (
         <animated.div className={styles.wrapper} key={node.id} style={spring}>
-          <Image src={node.transformedSrc} imageLoaded={imageLoaded} alt={node.altText} className={styles.image} />
+          <Image
+            src={node.transformedSrc}
+            alt={node.altText || 'Product image'}
+            className={styles.image}
+            imageLoaded={imageLoaded}
+          />
         </animated.div>
       ))}
     </>
