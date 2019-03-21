@@ -15,14 +15,15 @@ interface Props {
 const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Query<{ checkoutId: string }> query={getCheckoutId}>
-      {({ data: { checkoutId }, client }) => {
-        if (checkoutId) {
+      {({ data: checkout, client }) => {
+        if (checkout) {
           return (
             <Query<Data>
               query={getCheckout}
-              variables={{ checkoutId }}
-              onError={() => {
-                initCheckout(client, true);
+              variables={{ checkoutId: checkout.checkoutId }}
+              onError={e => {
+                console.log(e);
+                // initCheckout(client, true);
               }}
             >
               {({ loading, data, error }) => {
