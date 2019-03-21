@@ -15,7 +15,7 @@ interface Props {
 const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Query<{ checkoutId: string }> query={getCheckoutId}>
-      {({ data: checkout, client }) => {
+      {({ data: checkout }) => {
         if (checkout) {
           return (
             <Query<Data>
