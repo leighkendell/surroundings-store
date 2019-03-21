@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { getCheckout, getCheckoutId } from '../../graphql/checkout';
 import { Checkout } from '../../interfaces';
-import { initCheckout } from '../../lib/helpers';
+// import { initCheckout } from '../../lib/helpers';
 
 interface Data {
   node: Checkout;
