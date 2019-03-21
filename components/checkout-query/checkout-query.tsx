@@ -16,7 +16,7 @@ const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Query<{ checkoutId: string }> query={getCheckoutId}>
       {({ data: checkout }) => {
-        if (checkout) {
+        if (checkout && checkout.checkoutId) {
           return (
             <Query<Data>
               query={getCheckout}
