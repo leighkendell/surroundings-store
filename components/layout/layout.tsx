@@ -10,8 +10,10 @@ interface Props {
 }
 
 const Layout: React.FunctionComponent<Props> = ({ children, pageTitle, pageDescription, router }) => {
+  const rootUrl = 'https://store.surroundings.band';
   const title = `${pageTitle} • Surroundings Store`;
-  const url = `https://store.surroundings.band${router.pathname !== '/' ? router.pathname : ''}`;
+  const url = `${rootUrl}${router.asPath !== '/' ? router.asPath : ''}`;
+  const image = `${rootUrl}/static/images/og-default.jpg`;
 
   return (
     <>
@@ -21,7 +23,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, pageTitle, pageDescr
         <meta property="og:url" content={url} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:image" content="/static/images/og-default.jpg" />
+        <meta property="og:image" content={image} />
       </Head>
       {children}
     </>
