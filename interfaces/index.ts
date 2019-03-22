@@ -9,6 +9,12 @@ export interface Cart {
   };
 }
 
+export interface Navigation {
+  navigation: {
+    isOpen: boolean;
+  };
+}
+
 export interface Image {
   id: string;
   altText: string;
