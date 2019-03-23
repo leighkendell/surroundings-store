@@ -35,7 +35,7 @@
 }
 
 .details {
-  max-width: calc(100% - (90px + #{$spacing-small * 2}));
+  max-width: calc(100% - (110px + #{$spacing-small * 2}));
   margin-right: $spacing-small;
 
   span {

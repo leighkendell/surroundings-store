@@ -6,7 +6,7 @@
   width: 30px;
   height: 30px;
   padding: 0;
-  transition: 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   border: 0;
   outline: 0;
   background: none;
@@ -18,13 +18,15 @@
 
   &::before,
   &::after {
+    --transition: 0.25s ease;
+
     content: '';
     position: absolute;
     left: 10%;
     width: 80%;
     height: 2px;
     transform-origin: right;
-    transition: 0.25s ease;
+    transition: transform var(--transition), box-shadow var(--transition);
     transition-delay: 0.25s;
     background-color: $color-black;
   }

@@ -52,10 +52,12 @@
 }
 
 @mixin input {
+  --transition: 0.3s ease-in-out;
+
   display: block;
   width: 100%;
   padding: 1em;
-  transition: 0.3s ease-in-out;
+  transition: box-shadow var(--transition), opacity var(--transition);
   border: 1px solid $color-border;
   border-radius: 2px;
   outline: 0;
