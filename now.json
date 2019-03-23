@@ -14,13 +14,6 @@
       "dest": "/product?handle=$handle"
     },
     {
-      "src": "/product",
-      "status": 301,
-      "headers": {
-        "Location": "https://store.surroundings.band"
-      }
-    },
-    {
       "src": "/_next/static/(?:[^/]+/pages|chunks|runtime)/.+",
       "headers": {
         "cache-control": "s-maxage=86400, immutable"
