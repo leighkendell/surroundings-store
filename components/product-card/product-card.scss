@@ -27,7 +27,7 @@
     left: 50%;
     width: 80%;
     height: 80%;
-    transform: translate(-50%, -50%) scale(var(--scale));
+    transform: translate3d(-50%, -50%, 0) scale(var(--scale));
     object-fit: cover;
     transition: transform 0.3s ease-in-out;
 

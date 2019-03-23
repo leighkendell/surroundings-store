@@ -12,9 +12,9 @@ interface Props {
 
 const Notification: React.FunctionComponent<Props> = ({ children, visible }) => {
   const transitions = useTransition<{}, {}>(visible, null, {
-    from: { transform: `translateY(150%)` },
-    enter: { transform: `translateY(0)` },
-    leave: { transform: `translateY(150%)` },
+    from: { transform: `translate3d(0, 150%, 0)` },
+    enter: { transform: `translate3d(0, 0, 0)` },
+    leave: { transform: `translate3d(0, 150%, 0)` },
     trail: 2000,
   });
 

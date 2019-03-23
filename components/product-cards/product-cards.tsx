@@ -9,9 +9,9 @@ interface Props {
 
 const ProductCards: React.FunctionComponent<Props> = ({ products }) => {
   const trail = useTrail(products.length, {
-    from: { opacity: 0, transform: 'translateY(40px)' },
+    from: { opacity: 0, transform: 'translate3d(0, 40px, 0)' },
     opacity: 1,
-    transform: 'translateY(0)',
+    transform: 'translate3d(0, 0, 0)',
   });
 
   const AnimatedProductCard = animated(ProductCard);

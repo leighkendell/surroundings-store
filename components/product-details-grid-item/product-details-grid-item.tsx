@@ -11,10 +11,10 @@ const ProductDetailsGridItem: React.FunctionComponent<Props> = ({ children, slid
   const spring = useSpring({
     from: {
       opacity: 0,
-      transform: `${slideIn ? 'translateX(-25px)' : ''}`,
+      transform: `${slideIn ? 'translate3d(-25px, 0, 0)' : ''}`,
     },
     opacity: 1,
-    transform: `${slideIn ? 'translateX(0px)' : ''}`,
+    transform: `${slideIn ? 'translate3d(0px, 0, 0)' : ''}`,
     delay: slideIn ? 250 : 0,
   });
 

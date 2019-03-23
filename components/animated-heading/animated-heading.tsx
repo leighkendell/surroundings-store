@@ -6,8 +6,8 @@ const AnimatedHeading: React.FunctionComponent = ({ children }) => {
   const SpringHeading = animated(Heading);
 
   const props = useSpring({
-    from: { opacity: 0, transform: 'translateX(-25px)' },
-    to: { opacity: 1, transform: 'translateX(0)' },
+    from: { opacity: 0, transform: 'translate3d(-25px, 0, 0)' },
+    to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
   });
 
   return (

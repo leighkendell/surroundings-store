@@ -21,12 +21,12 @@ const CartWrapper: React.FunctionComponent<Props> = ({ children, cart }) => {
 
   const wrapperSpring = useSpring({
     from: {
-      transform: 'translateX(100%)',
+      transform: 'translate3d(100%, 0, 0)',
       visibility: 'hidden',
     },
     to: [
       { visibility: isOpen ? 'visible' : '' },
-      { transform: `translateX(${isOpen ? '0%' : '100%'})` },
+      { transform: `translate3d(${isOpen ? '0%' : '100%'}, 0, 0)` },
       { visibility: isOpen ? '' : 'hidden' },
     ],
   });

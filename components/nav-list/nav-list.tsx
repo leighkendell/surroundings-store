@@ -13,10 +13,10 @@ const NavList: React.FunctionComponent<Props> = React.memo(({ open, children }) 
   const isWide = isBrowser ? useMediaLayout({ minWidth: parseInt(styleVars.breakpointMedium, 10) }) : false;
 
   const spring = useSpring({
-    from: { transform: 'translateY(0%)' },
+    from: { transform: 'translate3d(0, 0%, 0)' },
     to: [
       { visibility: open ? 'visible' : '' },
-      { transform: `translateY(${open ? '-100%' : '0%'})` },
+      { transform: `translate3d(0, ${open ? '-100%' : '0%'}, 0)` },
       { visibility: open ? '' : 'hidden' },
     ],
   });

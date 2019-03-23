@@ -43,11 +43,11 @@
   transform: rotate(1turn);
 
   &::before {
-    transform: rotate(-45deg) translate(-2px, -3px);
+    transform: rotate(-45deg) translate3d(-2px, -3px, 0);
     box-shadow: none;
   }
 
   &::after {
-    transform: rotate(45deg) translate(-2px, 3px);
+    transform: rotate(45deg) translate3d(-2px, 3px, 0);
   }
 }
