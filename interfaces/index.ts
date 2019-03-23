@@ -59,6 +59,8 @@ export interface Product {
   id: string;
   title: string;
   description: string;
+  descriptionHtml: string;
+  productType: string;
   priceRange: ProductPriceRange;
   handle: string;
   tags: string[];

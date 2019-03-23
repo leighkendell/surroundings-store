@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import {
   Error,
   HeaderTextGroup,
+  HtmlContent,
   Layout,
   Loading,
   ProductDetailsGrid,
@@ -49,10 +50,11 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
 
           if (data) {
             const product = data.productByHandle;
-            const { title, description, images, variants, priceRange, tags } = product;
+            const { title, descriptionHtml, images, variants, priceRange, tags } = product;
             const { amount, currencyCode } = priceRange.minVariantPrice;
             const price = formatCurrency(currencyCode, amount);
             const theme = getTheme(tags);
+            console.log(descriptionHtml);
 
             return (
               <>
@@ -66,7 +68,7 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
                     </ProductDetailsGridItem>
                     <ProductDetailsGridItem slideIn={true}>
                       <HeaderTextGroup firstHeading={title} secondHeading={price} />
-                      <Text>{description}</Text>
+                      <HtmlContent>{descriptionHtml}</HtmlContent>
                       <ProductForm variants={variants} />
                     </ProductDetailsGridItem>
                   </ProductDetailsGrid>

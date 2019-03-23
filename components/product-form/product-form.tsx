@@ -19,6 +19,7 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
   const [defaultVariant] = variants.edges;
   const [productVariant, updateProductVariant] = useState(defaultVariant.node.id);
   const [productQuantity, updateProductQuantity] = useState(1);
+  const showSelect = variants.edges.length > 1;
 
   const handleVariantChange = (event: ChangeEvent) => {
     const target = event.target as HTMLSelectElement;
@@ -53,7 +54,7 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
               <form onSubmit={event => handleFormSubmit({ event, mutate, checkout })}>
                 <FormGroup>
                   {/* tslint:disable:react-a11y-role-has-required-aria-props */}
-                  <FormField>
+                  <FormField hidden={!showSelect}>
                     <Label htmlFor="variant">Colour / Size</Label>
                     <InputSelect
                       id="variant"

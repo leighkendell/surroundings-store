@@ -9,6 +9,10 @@
   background-color: $color-light;
   color: currentColor;
   text-decoration: none;
+
+  @include breakpoint(x-large) {
+    max-width: 400px;
+  }
 }
 
 .image {
@@ -34,6 +38,13 @@
     .card:hover & {
       --scale: 1.1;
     }
+  }
+}
+
+.imagefull {
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 

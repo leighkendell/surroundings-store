@@ -12,7 +12,9 @@ const ProductFragment = gql`
       }
     }
     description
+    descriptionHtml
     tags
+    productType
   }
 `;
 
