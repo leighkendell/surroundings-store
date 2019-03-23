@@ -13,7 +13,6 @@ import {
   ProductForm,
   ProductImage,
   Section,
-  Text,
 } from '../components';
 import { productByHandle } from '../graphql/products';
 import { Product as ProductInterface } from '../interfaces';
@@ -33,6 +32,8 @@ interface Data {
   productByHandle: ProductInterface;
 }
 
+const errorMessage = <Error>We're having issues loading this product. Please try again later.</Error>;
+
 const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
   const { handle } = router.query;
 
@@ -45,10 +46,10 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
           }
 
           if (error) {
-            return <Error>We're having issues loading this product. Please try again later.</Error>;
+            return errorMessage;
           }
 
-          if (data) {
+          if (data && data.productByHandle) {
             const product = data.productByHandle;
             const { title, descriptionHtml, images, variants, priceRange, tags } = product;
             const { amount, currencyCode } = priceRange.minVariantPrice;
@@ -75,6 +76,8 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
               </>
             );
           }
+
+          return errorMessage;
         }}
       </Query>
     </Layout>
