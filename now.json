@@ -1,6 +1,7 @@
 {
   "name": "surroundings-store",
   "version": 2,
+  "alias": ["store.surroundings.band"],
   "builds": [
     {
       "src": "next.config.js",
