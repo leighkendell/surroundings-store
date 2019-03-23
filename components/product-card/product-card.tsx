@@ -36,7 +36,9 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
             <div className={styles.content}>
               <span className={styles.title}>{title}</span>
               <strong className={styles.price}>{price}</strong>
-              <Button hover={hover}>View product</Button>
+              <Button hover={hover} role="button">
+                View product
+              </Button>
             </div>
           </a>
         </Link>
