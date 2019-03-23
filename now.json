@@ -16,7 +16,7 @@
       "src": "/product",
       "status": 301,
       "headers": {
-        "Location": ""
+        "Location": "https://store.surroundings.band"
       }
     },
     {
