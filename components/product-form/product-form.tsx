@@ -54,7 +54,7 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
                 <FormGroup>
                   {/* tslint:disable:react-a11y-role-has-required-aria-props */}
                   <FormField>
-                    <Label htmlFor="variant">Size</Label>
+                    <Label htmlFor="variant">Colour / Size</Label>
                     <InputSelect
                       id="variant"
                       value={productVariant}

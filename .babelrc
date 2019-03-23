@@ -1,6 +1,13 @@
 {
   "presets": [
-    "next/babel",
+    [
+      "next/babel",
+      {
+        "preset-env": {
+          "useBuiltIns": "entry"
+        },
+      }
+    ],
     "@zeit/next-typescript/babel"
   ],
   "plugins": [

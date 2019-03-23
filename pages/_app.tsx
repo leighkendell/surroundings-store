@@ -16,18 +16,26 @@ const cartError = (
   </Section>
 );
 
+const browserError = (
+  <Section variation="secondary">
+    <Error>Dang, it looks like you're using an unsupported browser. You may have difficulties using this site.</Error>
+  </Section>
+);
+
 class MainApp extends App<MainAppProps> {
   public state = {
     cartErrorVisible: false,
+    browserErrorVisible: false,
   };
 
   public componentDidMount() {
+    this.browserCheck();
     this.initCheckout();
   }
 
   public render() {
     const { Component, pageProps, apolloClient } = this.props;
-    const { cartErrorVisible } = this.state;
+    const { cartErrorVisible, browserErrorVisible } = this.state;
 
     return (
       <Container>
@@ -35,6 +43,7 @@ class MainApp extends App<MainAppProps> {
           <Nav />
           <Cart />
           <Main>
+            {browserErrorVisible && browserError}
             {cartErrorVisible && cartError}
             <Component {...pageProps} />
           </Main>
@@ -49,6 +58,13 @@ class MainApp extends App<MainAppProps> {
 
     initCheckout(apolloClient).catch(() => {
       this.setState({ cartErrorVisible: true });
+    });
+  }
+
+  private browserCheck() {
+    const script = document.createElement('script');
+    this.setState({
+      browserErrorVisible: !('noModule' in script),
     });
   }
 }
