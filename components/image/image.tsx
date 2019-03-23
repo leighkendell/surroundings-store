@@ -10,17 +10,12 @@ const Image: React.FunctionComponent<Props> = ({ src, alt, imageLoaded, ...props
   const imageRef = React.createRef<HTMLImageElement>();
   const [loaded, updateLoaded] = useState(false);
 
-  const spring = useSpring({
-    from: { opacity: 0 },
-    opacity: loaded ? 1 : 0,
-  });
-
   const handleImageLoaded = () => {
-    updateLoaded(true);
     if (imageRef.current && imageLoaded) {
       imageRef.current.removeEventListener('load', handleImageLoaded);
       imageLoaded();
     }
+    updateLoaded(true);
   };
 
   useEffect(() => {
@@ -33,6 +28,11 @@ const Image: React.FunctionComponent<Props> = ({ src, alt, imageLoaded, ...props
       }
     }
   }, []);
+
+  const spring = useSpring({
+    from: { opacity: 0 },
+    opacity: loaded ? 1 : 0,
+  });
 
   return <animated.img src={source} alt={alt} ref={imageRef} style={spring} {...props} />;
 };
