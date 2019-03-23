@@ -54,7 +54,6 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
             const { amount, currencyCode } = priceRange.minVariantPrice;
             const price = formatCurrency(currencyCode, amount);
             const theme = getTheme(tags);
-            console.log(descriptionHtml);
 
             return (
               <>
