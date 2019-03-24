@@ -2,6 +2,7 @@ import { ApolloClient } from 'apollo-boost';
 import App, { AppProps, Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
+import ReactGA from 'react-ga';
 import { Cart, Error, Footer, Main, Nav, Section } from '../components';
 import { initCheckout } from '../lib/helpers';
 import withApolloClient from '../lib/with-apollo-client';
@@ -31,6 +32,7 @@ class MainApp extends App<MainAppProps> {
   public componentDidMount() {
     this.browserCheck();
     this.initCheckout();
+    this.initGoogleAnalytics();
   }
 
   public render() {
@@ -65,6 +67,16 @@ class MainApp extends App<MainAppProps> {
     const script = document.createElement('script');
     this.setState({
       browserErrorVisible: !('noModule' in script),
+    });
+  }
+
+  private initGoogleAnalytics() {
+    const { router } = this.props;
+    ReactGA.initialize('UA-136833682-1');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
+    router.events.on('routeChangeComplete', (url: string) => {
+      ReactGA.pageview(url);
     });
   }
 }

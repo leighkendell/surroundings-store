@@ -1,5 +1,6 @@
 import React from 'react';
-import { Mutation } from 'react-apollo';
+import { Mutation, MutationFn } from 'react-apollo';
+import ReactGA from 'react-ga';
 import { animated, useSpring } from 'react-spring';
 import { CheckoutQuery } from '..';
 import { updateCartOpen } from '../../graphql/cart';
@@ -24,24 +25,32 @@ const Total: React.FunctionComponent<TotalProps> = ({ total }) => {
   );
 };
 
-const CartToggle: React.FunctionComponent = () => (
-  <Mutation mutation={updateCartOpen}>
-    {updateCartOpenMutation => (
-      <button
-        className={styles.toggle}
-        aria-label="Open cart"
-        onClick={() => updateCartOpenMutation({ variables: { isOpen: true } })}
-      >
-        <CheckoutQuery>
-          {({ lineItems }) => {
-            const total = lineItems.edges.length;
-            return <Total total={total} />;
-          }}
-        </CheckoutQuery>
-        <CartIcon className={styles.icon} />
-      </button>
-    )}
-  </Mutation>
-);
+const CartToggle: React.FunctionComponent = () => {
+  const openCart = (mutate: MutationFn) => {
+    mutate({ variables: { isOpen: true } });
+
+    // Track event
+    ReactGA.event({
+      category: 'Cart',
+      action: 'Opened Cart',
+    });
+  };
+
+  return (
+    <Mutation mutation={updateCartOpen}>
+      {mutate => (
+        <button className={styles.toggle} aria-label="Open cart" onClick={() => openCart(mutate)}>
+          <CheckoutQuery>
+            {({ lineItems }) => {
+              const total = lineItems.edges.length;
+              return <Total total={total} />;
+            }}
+          </CheckoutQuery>
+          <CartIcon className={styles.icon} />
+        </button>
+      )}
+    </Mutation>
+  );
+};
 
 export default CartToggle;

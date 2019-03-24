@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Mutation, MutationFn } from 'react-apollo';
+import ReactGA from 'react-ga';
 import { Image, Input } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
 import { Checkout, CheckoutLineItemEdge } from '../../interfaces';
@@ -56,6 +57,12 @@ const CartItem: React.FunctionComponent<Props> = React.memo(({ data, setUpdating
         checkoutId: checkout.id,
         lineItems: newItems,
       },
+    });
+
+    // Track event
+    ReactGA.event({
+      category: 'Cart',
+      action: 'Product Removed From Cart',
     });
   };
 
