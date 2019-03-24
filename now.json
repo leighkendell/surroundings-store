@@ -20,6 +20,13 @@
       }
     },
     {
+      "src": "/(.*)",
+      "dest": "/$1",
+      "headers": {
+        "cache-control": "s-maxage=86400, maxage=0"
+      }
+    },
+    {
       "src": "^/service-worker.js$",
       "dest": "/_next/static/service-worker.js",
       "headers": {
