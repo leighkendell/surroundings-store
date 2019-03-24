@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import Link from 'next/link';
-import Router, { SingletonRouter, withRouter } from 'next/router';
+import Router from 'next/router';
 import React, { useState } from 'react';
 import { UrlObject } from 'url';
 import { Button, Image } from '..';
@@ -10,7 +10,6 @@ import styles from './product-card.scss';
 
 interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   data: Product;
-  router: SingletonRouter;
 }
 
 const ProductCard: React.FunctionComponent<Props> = React.memo(
@@ -68,4 +67,4 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
   )
 );
 
-export default withRouter(ProductCard);
+export default ProductCard;
