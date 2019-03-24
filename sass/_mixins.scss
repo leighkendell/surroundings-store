@@ -48,7 +48,7 @@
 // Reusable styles
 // ==========================================================================
 @mixin card-shadow {
-  box-shadow: 0 2px 4px rgba($color-dark, 0.02), 0 4px 15px rgba($color-dark, 0.05);
+  box-shadow: 0 2px 4px rgba($color-dark, 0.05), 0 4px 15px rgba($color-dark, 0.05);
 }
 
 @mixin input {
