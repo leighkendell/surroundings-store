@@ -6,7 +6,7 @@ interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const Image: React.FunctionComponent<Props> = ({ src, alt, imageLoaded, ...props }) => {
-  const source = `https://res.cloudinary.com/dklnli1vg/image/fetch/f_auto/${src}`;
+  const source = `https://res.cloudinary.com/dklnli1vg/image/fetch/f_auto/q_auto/${src}`;
   const imageRef = React.createRef<HTMLImageElement>();
   const [loaded, updateLoaded] = useState(false);
 
