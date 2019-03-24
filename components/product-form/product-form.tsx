@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Mutation, MutationFn } from 'react-apollo';
+import ReactGA from 'react-ga';
 import { Button, CheckoutQuery, FormField, FormGroup, Input, InputSelect, Label, Notification } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
 import { Checkout, ProductVariantConnection } from '../../interfaces';
@@ -42,6 +43,12 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
         checkoutId: checkout.id,
         lineItems: newItems,
       },
+    });
+
+    // Track event
+    ReactGA.event({
+      category: 'Cart',
+      action: 'Product Added To Cart',
     });
   };
 
