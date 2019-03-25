@@ -10,16 +10,17 @@
   }
 
   > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
     @include breakpoint(medium) {
       grid-row: 1 / 2;
     }
 
     // Image
     &:first-child {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
       background-color: var(--theme);
 
       @include breakpoint(medium) {
