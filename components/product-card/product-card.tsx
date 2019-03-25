@@ -46,7 +46,9 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
             onTouchStart={() => setTouchmoved(false)}
             onTouchEnd={() => {
               if (!touchmoved) {
-                Router.push(url, asUrl);
+                Router.push(url, asUrl).then(() => {
+                  window.scrollTo(0, 0);
+                });
               }
             }}
           >
