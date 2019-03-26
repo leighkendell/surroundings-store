@@ -5,6 +5,7 @@ const optimizedImages = require('next-optimized-images');
 const withPlugins = require('next-compose-plugins');
 const bundleAnalyzer = require('@zeit/next-bundle-analyzer');
 const offline = require('next-offline');
+const sourceMaps = require('@zeit/next-source-maps')();
 
 const nextConfig = {
   target: 'serverless',
@@ -20,6 +21,7 @@ const nextConfig = {
 };
 
 module.exports = withPlugins([
+  [sourceMaps],
   [sass, {
     cssLoaderOptions: {
       importLoaders: 1,
@@ -64,5 +66,5 @@ module.exports = withPlugins([
       ],
       swDest: 'static/service-worker.js',
     }
-  }]
+  }],
 ], nextConfig);
