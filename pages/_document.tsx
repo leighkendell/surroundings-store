@@ -12,7 +12,7 @@ export default class CustomDocument extends Document {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-          <link rel="preconnect" href="https://use.typekit.net" />
+          <link rel="preload" href="https://use.typekit.net/nfn4mpw.css" as="style" />
           <link rel="preconnect" href="https://srrndngs.myshopify.com" />
           <link rel="stylesheet" href="https://use.typekit.net/nfn4mpw.css" />
           <link rel="stylesheet" href="/static/css/normalize.css" />
