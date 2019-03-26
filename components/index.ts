@@ -41,3 +41,4 @@ export { default as Section } from './section/section';
 export { default as SocialIcons } from './social-icons/social-icons';
 export { default as Text } from './text/text';
 export { default as Wrapper } from './wrapper/wrapper';
+export { default as ErrorBoundary } from './error-boundary/error-boundary';

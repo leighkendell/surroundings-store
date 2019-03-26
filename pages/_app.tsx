@@ -1,9 +1,10 @@
+import * as Sentry from '@sentry/browser';
 import { ApolloClient } from 'apollo-boost';
 import App, { AppProps, Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactGA from 'react-ga';
-import { Cart, Error, Footer, Main, Nav, Section } from '../components';
+import { Cart, Error, ErrorBoundary, Footer, Main, Nav, Section } from '../components';
 import { initCheckout } from '../lib/helpers';
 import withApolloClient from '../lib/with-apollo-client';
 
@@ -33,6 +34,7 @@ class MainApp extends App<MainAppProps> {
     this.browserCheck();
     this.initCheckout();
     this.initGoogleAnalytics();
+    this.initSentry();
   }
 
   public render() {
@@ -43,11 +45,15 @@ class MainApp extends App<MainAppProps> {
       <Container>
         <ApolloProvider client={apolloClient}>
           <Nav />
-          <Cart />
+          <ErrorBoundary>
+            <Cart />
+          </ErrorBoundary>
           <Main>
             {browserErrorVisible && browserError}
             {cartErrorVisible && cartError}
-            <Component {...pageProps} />
+            <ErrorBoundary>
+              <Component {...pageProps} />
+            </ErrorBoundary>
           </Main>
           <Footer />
         </ApolloProvider>
@@ -77,6 +83,12 @@ class MainApp extends App<MainAppProps> {
 
     router.events.on('routeChangeComplete', (url: string) => {
       ReactGA.pageview(url);
+    });
+  }
+
+  private initSentry() {
+    Sentry.init({
+      dsn: 'https://fa81401e0bb540df8f4f03105ffe389a@sentry.io/1422232',
     });
   }
 }
