@@ -6,6 +6,8 @@ const CheckoutFragment = gql`
     webUrl
     totalTax
     totalPrice
+    completedAt
+    ready
     lineItems(first: 250) {
       edges {
         node {

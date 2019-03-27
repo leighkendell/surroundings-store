@@ -88,6 +88,8 @@ export interface Checkout {
   webUrl: string;
   totalTax: string;
   totalPrice: string;
+  completedAt: string;
+  ready: boolean;
   lineItems: CheckoutLineItemConnection;
 }
 

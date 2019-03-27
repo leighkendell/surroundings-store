@@ -21,7 +21,14 @@ const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
             <Query<Data>
               query={getCheckout}
               variables={{ checkoutId: checkout.checkoutId }}
+              onCompleted={({ node: { completedAt } }) => {
+                // If the checkout has already been completed re-init
+                if (completedAt) {
+                  initCheckout(client, true);
+                }
+              }}
               onError={() => {
+                // If there's an error with the cart re-init
                 initCheckout(client, true);
               }}
             >
