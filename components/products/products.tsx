@@ -7,6 +7,7 @@ import Wrapper from '../wrapper/wrapper';
 
 interface Props {
   handle: string;
+  limit?: number;
 }
 
 interface Data {
@@ -15,8 +16,8 @@ interface Data {
 
 const errorMessage = <Error>We're having issues loading the products. Please try again later.</Error>;
 
-const Products: React.FunctionComponent<Props> = ({ handle }) => (
-  <Query<Data> query={collectionByHandle} variables={{ handle }}>
+const Products: React.FunctionComponent<Props> = ({ handle, limit }) => (
+  <Query<Data> query={collectionByHandle} variables={{ handle, limit }}>
     {({ data, loading, error }) => {
       if (loading) {
         return <Loading />;
@@ -44,5 +45,9 @@ const Products: React.FunctionComponent<Props> = ({ handle }) => (
     }}
   </Query>
 );
+
+Products.defaultProps = {
+  limit: 6,
+};
 
 export default Products;

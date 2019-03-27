@@ -5,7 +5,7 @@ const ClothingPage: React.FunctionComponent = () => {
   return (
     <Layout pageTitle="Clothing">
       <HeaderText>Clothing</HeaderText>
-      <Products handle="clothing" />
+      <Products handle="clothing" limit={12} />
     </Layout>
   );
 };
