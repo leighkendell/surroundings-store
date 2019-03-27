@@ -46,9 +46,9 @@ export const productByHandle = gql`
 `;
 
 export const collectionByHandle = gql`
-  query collectionByHandle($handle: String!) {
+  query collectionByHandle($handle: String!, $limit: Int!) {
     collectionByHandle(handle: $handle) {
-      products(first: 6) {
+      products(first: $limit) {
         edges {
           node {
             ...ProductFragment
