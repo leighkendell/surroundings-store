@@ -27,6 +27,13 @@ const Image: React.FunctionComponent<Props> = ({ src, alt, imageLoaded, ...props
         imageRef.current.addEventListener('load', handleImageLoaded);
       }
     }
+
+    // Remove event listener
+    return () => {
+      if (imageRef.current) {
+        imageRef.current.removeEventListener('load', handleImageLoaded);
+      }
+    };
   }, []);
 
   const spring = useSpring({

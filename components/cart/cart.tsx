@@ -25,7 +25,7 @@ const Cart: React.FunctionComponent = () => (
 
       return (
         <Query<CartInterface> query={getCart}>
-          {({ data }) => {
+          {({ data, client }) => {
             if (data) {
               return (
                 <CartWrapper cart={data.cart}>
@@ -34,7 +34,7 @@ const Cart: React.FunctionComponent = () => (
                     <EmptyMessage />
                   ) : (
                     <>
-                      <CartItems products={lineItems.edges} />
+                      <CartItems products={lineItems.edges} client={client} />
                       <CartFooter webUrl={webUrl} totalPrice={formattedPrice} />
                     </>
                   )}

@@ -1,14 +1,17 @@
+import { ApolloClient } from 'apollo-boost';
 import React, { useEffect, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { CartItem, CartSection, Heading, Notification } from '..';
 import { CheckoutLineItemEdge } from '../../interfaces';
+import { initCheckout } from '../../lib/helpers';
 import styles from './cart-items.scss';
 
 interface Props {
   products: CheckoutLineItemEdge[];
+  client: ApolloClient<any>;
 }
 
-const CartItems: React.FunctionComponent<Props> = React.memo(({ products }) => {
+const CartItems: React.FunctionComponent<Props> = React.memo(({ products, client }) => {
   // Refs
   const listEl = React.createRef<HTMLUListElement>();
 
@@ -25,6 +28,13 @@ const CartItems: React.FunctionComponent<Props> = React.memo(({ products }) => {
     opacity: updating ? 0.5 : 1,
     pointerEvents: updating ? 'none' : 'auto',
   });
+
+  // Check if any of the products have no variants, if so it means they have probably been deleted since added to the users cart. Re init the checkout
+  const hasNullVariants = products.some(product => product.node.variant === null);
+  if (hasNullVariants) {
+    initCheckout(client, true);
+    return null;
+  }
 
   // Sort products by variant ID
   const sortedProducts = products.sort((a, b) => {
