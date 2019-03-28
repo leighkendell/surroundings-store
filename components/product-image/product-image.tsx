@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
-import { Image } from '..';
+import { AppContext, Image } from '..';
 import { ImageConnection } from '../../interfaces';
 import styles from './product-image.scss';
 
@@ -10,8 +10,10 @@ interface Props {
 
 const ProductImage: React.FunctionComponent<Props> = ({ images }) => {
   const [imageReady, setImageReady] = useState(false);
+  const { isServerRender } = useContext(AppContext);
 
   const spring = useSpring({
+    immediate: isServerRender,
     from: {
       transform: 'translate3d(0, 40px, 0) scale(0.95)',
       opacity: 0,
