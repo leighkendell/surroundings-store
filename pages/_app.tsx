@@ -1,15 +1,16 @@
 import * as Sentry from '@sentry/browser';
 import { ApolloClient } from 'apollo-boost';
-import App, { AppProps, Container } from 'next/app';
+import App, { AppProps, Container, NextAppContext } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactGA from 'react-ga';
-import { Cart, Error, ErrorBoundary, Footer, Main, Nav, Section } from '../components';
+import { AppContextWrapper, Cart, Error, ErrorBoundary, Footer, Main, Nav, Section } from '../components';
 import { initCheckout } from '../lib/helpers';
 import withApolloClient from '../lib/with-apollo-client';
 
 interface MainAppProps extends AppProps {
   apolloClient: ApolloClient<{}>;
+  isServerRender: boolean;
 }
 
 const cartError = (
@@ -25,6 +26,22 @@ const browserError = (
 );
 
 class MainApp extends App<MainAppProps> {
+  public static async getInitialProps({ Component, ctx }: NextAppContext) {
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    // Determine if this render came from the server
+    const isServerRender = ctx.res !== undefined;
+
+    return {
+      pageProps,
+      isServerRender,
+    };
+  }
+
   public state = {
     cartErrorVisible: false,
     browserErrorVisible: false,
@@ -38,24 +55,26 @@ class MainApp extends App<MainAppProps> {
   }
 
   public render() {
-    const { Component, pageProps, apolloClient } = this.props;
+    const { Component, pageProps, apolloClient, isServerRender } = this.props;
     const { cartErrorVisible, browserErrorVisible } = this.state;
 
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <Nav />
-          <ErrorBoundary>
-            <Cart />
-          </ErrorBoundary>
-          <Main>
-            {browserErrorVisible && browserError}
-            {cartErrorVisible && cartError}
+          <AppContextWrapper isServerRender={isServerRender}>
+            <Nav />
             <ErrorBoundary>
-              <Component {...pageProps} />
+              <Cart />
             </ErrorBoundary>
-          </Main>
-          <Footer />
+            <Main>
+              {browserErrorVisible && browserError}
+              {cartErrorVisible && cartError}
+              <ErrorBoundary>
+                <Component {...pageProps} />
+              </ErrorBoundary>
+            </Main>
+            <Footer />
+          </AppContextWrapper>
         </ApolloProvider>
       </Container>
     );
