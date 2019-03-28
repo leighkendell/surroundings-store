@@ -11,29 +11,17 @@ const Image: React.FunctionComponent<Props> = ({ src, alt, imageLoaded, ...props
   const [loaded, updateLoaded] = useState(false);
 
   const handleImageLoaded = () => {
-    if (imageRef.current && imageLoaded) {
-      imageRef.current.removeEventListener('load', handleImageLoaded);
+    if (imageLoaded) {
       imageLoaded();
     }
     updateLoaded(true);
   };
 
   useEffect(() => {
-    // Fire imageLoaded function when the image loads
-    if (imageRef.current) {
-      if (imageRef.current.complete) {
-        handleImageLoaded();
-      } else {
-        imageRef.current.addEventListener('load', handleImageLoaded);
-      }
+    // Fire handleImageLoaded function if the image has already loaded
+    if (imageRef.current && imageRef.current.complete) {
+      handleImageLoaded();
     }
-
-    // Remove event listener
-    return () => {
-      if (imageRef.current) {
-        imageRef.current.removeEventListener('load', handleImageLoaded);
-      }
-    };
   }, []);
 
   const spring = useSpring({
@@ -41,7 +29,7 @@ const Image: React.FunctionComponent<Props> = ({ src, alt, imageLoaded, ...props
     opacity: loaded ? 1 : 0,
   });
 
-  return <animated.img src={source} alt={alt} ref={imageRef} style={spring} {...props} />;
+  return <animated.img src={source} alt={alt} ref={imageRef} onLoad={handleImageLoaded} style={spring} {...props} />;
 };
 
 export default Image;
