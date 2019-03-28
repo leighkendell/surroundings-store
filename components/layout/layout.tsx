@@ -13,7 +13,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, pageTitle, pageDescr
   const rootUrl = 'https://store.surroundings.band';
   const title = `${pageTitle} • Surroundings Store`;
   const url = `${rootUrl}${router.asPath !== '/' ? router.asPath : ''}`;
-  const image = `${rootUrl}/static/images/og-default.jpg`;
+  const image = `${rootUrl}/static/images/og-default-products.png`;
 
   return (
     <>
@@ -24,6 +24,9 @@ const Layout: React.FunctionComponent<Props> = ({ children, pageTitle, pageDescr
         <meta property="og:title" content={title} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:image" content={image} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="628" />
       </Head>
       {children}
     </>
