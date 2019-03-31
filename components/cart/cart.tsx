@@ -28,7 +28,7 @@ const Cart: React.FunctionComponent = () => (
           {({ data, client }) => {
             if (data) {
               return (
-                <CartWrapper cart={data.cart}>
+                <CartWrapper cart={data.cart} client={client}>
                   <Heading type="h2">Your cart</Heading>
                   {isCartEmpty ? (
                     <EmptyMessage />
