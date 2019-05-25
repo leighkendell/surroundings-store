@@ -2,7 +2,7 @@
   "name": "surroundings-store",
   "version": 2,
   "alias": ["store.surroundings.band"],
-  "region": ["syd1"],
+  "regions": ["syd1"],
   "builds": [
     {
       "src": "next.config.js",
