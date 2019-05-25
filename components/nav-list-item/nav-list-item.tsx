@@ -15,7 +15,7 @@ const NavListItem: React.FunctionComponent<Props> = React.memo(({ children, href
 
   return (
     <li className={className}>
-      <Mutation mutation={updateNavigationOpen}>
+      <Mutation<any> mutation={updateNavigationOpen}>
         {mutate => (
           <Link href={href} prefetch={true}>
             <a onClick={() => mutate({ variables: { isOpen: false } })} role="button">

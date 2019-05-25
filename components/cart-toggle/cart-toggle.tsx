@@ -37,7 +37,7 @@ const CartToggle: React.FunctionComponent = () => {
   };
 
   return (
-    <Mutation mutation={updateCartOpen}>
+    <Mutation<any> mutation={updateCartOpen}>
       {mutate => (
         <button className={styles.toggle} aria-label="Open cart" onClick={() => openCart(mutate)}>
           <CheckoutQuery>

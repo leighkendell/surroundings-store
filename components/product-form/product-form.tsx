@@ -56,7 +56,7 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
     <CheckoutQuery>
       {checkout => {
         return (
-          <Mutation mutation={checkoutLineItemsReplace}>
+          <Mutation<any> mutation={checkoutLineItemsReplace}>
             {(mutate, { loading }) => (
               <form onSubmit={event => handleFormSubmit({ event, mutate, checkout })}>
                 <FormGroup>
