@@ -33,7 +33,7 @@ const CartWrapper: React.FunctionComponent<Props> = ({ children, cart }) => {
 
   return (
     <aside>
-      <Mutation mutation={updateCartOpen}>
+      <Mutation<any> mutation={updateCartOpen}>
         {updateCartOpenMutation => (
           <animated.div
             className={styles.background}

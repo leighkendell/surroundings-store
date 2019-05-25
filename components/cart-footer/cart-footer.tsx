@@ -21,7 +21,7 @@ const CartFooter: React.FunctionComponent<Props> = ({ totalPrice, webUrl }) => {
       </CartSection>
       <CartSection inline={true}>
         <Button onClick={navigateToCart}>Checkout</Button>
-        <Mutation mutation={updateCartOpen}>
+        <Mutation<any> mutation={updateCartOpen}>
           {updateCartOpenMutation => (
             <Button basic={true} onClick={() => updateCartOpenMutation({ variables: { isOpen: false } })}>
               Continue shopping

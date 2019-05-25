@@ -80,7 +80,7 @@ const CartItem: React.FunctionComponent<Props> = React.memo(({ data, setUpdating
       <div className={styles.manage}>
         <CheckoutQuery>
           {checkout => (
-            <Mutation mutation={checkoutLineItemsReplace}>
+            <Mutation<any> mutation={checkoutLineItemsReplace}>
               {(mutate, { loading }) => (
                 <>
                   <Input
