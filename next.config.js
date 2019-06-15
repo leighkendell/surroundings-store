@@ -30,7 +30,9 @@ module.exports = withPlugins([
     cssModules: true,
   }],
   [typescript],
-  [optimizedImages],
+  [optimizedImages, {
+    handleImages: ['jpeg', 'png', 'svg'],
+  }],
   [bundleAnalyzer, {
     analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
     analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
@@ -49,7 +51,7 @@ module.exports = withPlugins([
     workboxOpts: {
       runtimeCaching: [
         {
-          handler: 'networkFirst',
+          handler: 'NetworkFirst',
           options: {
             cacheName: 'https-calls',
             cacheableResponse: {
