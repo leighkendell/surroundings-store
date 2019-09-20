@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mutation, MutationFn } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import ReactGA from 'react-ga';
 import { animated, useSpring } from 'react-spring';
 import { CheckoutQuery } from '..';
@@ -26,7 +26,7 @@ const Total: React.FunctionComponent<TotalProps> = ({ total }) => {
 };
 
 const CartToggle: React.FunctionComponent = () => {
-  const openCart = (mutate: MutationFn) => {
+  const openCart = (mutate) => {
     mutate({ variables: { isOpen: true } });
 
     // Track event

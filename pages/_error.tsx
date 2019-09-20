@@ -1,4 +1,3 @@
-import { NextContext } from 'next';
 import React from 'react';
 import { HeaderText, Layout, Section, Text, Wrapper } from '../components';
 
@@ -7,7 +6,7 @@ interface Props {
 }
 
 class Error extends React.Component<Props> {
-  public static getInitialProps({ res }: NextContext) {
+  public static getInitialProps({ res }) {
     const statusCode = res ? res.statusCode : null;
     return { statusCode };
   }

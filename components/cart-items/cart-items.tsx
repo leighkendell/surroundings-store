@@ -1,4 +1,4 @@
-import { ApolloClient } from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
 import React, { useEffect, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { CartItem, CartSection, Heading, Notification } from '..';

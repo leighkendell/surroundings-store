@@ -1,4 +1,4 @@
-import { ApolloClient } from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
 import { createCheckout, getCheckoutId, updateCheckoutId } from '../graphql/checkout';
 import { Checkout, CheckoutLineItemArg } from '../interfaces';
 

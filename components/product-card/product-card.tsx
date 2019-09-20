@@ -35,7 +35,7 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
       const asUrl = `/product/${handle}`;
 
       return (
-        <Link href={url} as={asUrl} prefetch={true}>
+        <Link href={url} as={asUrl}>
           <a
             className={styles.card}
             style={{ '--theme': `var(--${theme})` }}

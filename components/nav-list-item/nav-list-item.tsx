@@ -10,22 +10,29 @@ interface Props {
   active?: boolean;
 }
 
-const NavListItem: React.FunctionComponent<Props> = React.memo(({ children, href, active }) => {
-  const className = classNames(styles.navListItem, { [styles.navListItemActive]: active });
+const NavListItem: React.FunctionComponent<Props> = React.memo(
+  ({ children, href, active }) => {
+    const className = classNames(styles.navListItem, {
+      [styles.navListItemActive]: active,
+    });
 
-  return (
-    <li className={className}>
-      <Mutation<any> mutation={updateNavigationOpen}>
-        {mutate => (
-          <Link href={href} prefetch={true}>
-            <a onClick={() => mutate({ variables: { isOpen: false } })} role="button">
-              {children}
-            </a>
-          </Link>
-        )}
-      </Mutation>
-    </li>
-  );
-});
+    return (
+      <li className={className}>
+        <Mutation<any> mutation={updateNavigationOpen}>
+          {mutate => (
+            <Link href={href}>
+              <a
+                onClick={() => mutate({ variables: { isOpen: false } })}
+                role="button"
+              >
+                {children}
+              </a>
+            </Link>
+          )}
+        </Mutation>
+      </li>
+    );
+  }
+);
 
 export default NavListItem;

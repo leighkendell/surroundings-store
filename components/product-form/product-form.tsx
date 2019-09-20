@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Mutation, MutationFn } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import ReactGA from 'react-ga';
 import { Button, CheckoutQuery, FormField, FormGroup, Input, InputSelect, Label, Notification } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
@@ -12,7 +12,7 @@ interface Props {
 
 interface FormSubmitParams {
   event: FormEvent;
-  mutate: MutationFn;
+  mutate: any;
   checkout: Checkout;
 }
 

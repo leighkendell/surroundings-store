@@ -1,15 +1,5 @@
 {
-  "presets": [
-    [
-      "next/babel",
-      {
-        "preset-env": {
-          "useBuiltIns": "entry"
-        },
-      }
-    ],
-    "@zeit/next-typescript/babel"
-  ],
+  "presets": ["next/babel"],
   "plugins": [
     "inline-react-svg"
   ]

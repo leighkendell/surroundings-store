@@ -28,7 +28,7 @@ const Nav: React.FunctionComponent<Props> = React.memo(({ router }) => {
                   <Mutation<any> mutation={updateNavigationOpen}>
                     {mutate => <NavToggle open={isOpen} onClick={() => mutate({ variables: { isOpen: !isOpen } })} />}
                   </Mutation>
-                  <Link href="/" prefetch={true}>
+                  <Link href="/">
                     <a className={styles.logo} aria-label="Home page">
                       <Logo />
                     </a>

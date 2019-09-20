@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Mutation, MutationFn } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import ReactGA from 'react-ga';
 import { Image, Input } from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
@@ -29,7 +29,7 @@ const CartItem: React.FunctionComponent<Props> = React.memo(({ data, setUpdating
     };
   }, []);
 
-  const handleQuantityChange = (event: ChangeEvent, checkout: Checkout, mutate: MutationFn) => {
+  const handleQuantityChange = (event: ChangeEvent, checkout: Checkout, mutate) => {
     setUpdating(true);
     const target = event.target as HTMLInputElement;
     const newQuantity = parseInt(target.value, 10);
@@ -47,7 +47,7 @@ const CartItem: React.FunctionComponent<Props> = React.memo(({ data, setUpdating
     });
   };
 
-  const handleRemove = (mutate: MutationFn, checkout: Checkout) => {
+  const handleRemove = (mutate, checkout: Checkout) => {
     setUpdating(true);
 
     // Update the cart

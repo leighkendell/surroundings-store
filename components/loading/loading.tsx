@@ -9,12 +9,10 @@ const Loading: React.FunctionComponent = () => {
   const spring = useSpring({
     from: { transform: 'rotate(0turn)' },
     to: async (next: any) => {
-      while (1) {
-        await next({ transform: `rotate(${(angle += 0.25)}turn)` });
-        await next({ transform: `rotate(${(angle += 0.75)}turn)` });
-        await next({ transform: `rotate(${(angle += 0.5)}turn)` });
-        await next({ transform: `rotate(${(angle += 1)}turn)` });
-      }
+      await next({ transform: `rotate(${(angle += 0.25)}turn)` });
+      await next({ transform: `rotate(${(angle += 0.75)}turn)` });
+      await next({ transform: `rotate(${(angle += 0.5)}turn)` });
+      await next({ transform: `rotate(${(angle += 1)}turn)` });
     },
   });
 
