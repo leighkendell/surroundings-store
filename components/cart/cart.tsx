@@ -1,6 +1,14 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { CartFooter, CartItems, CartSection, CartWrapper, CheckoutQuery, Heading, Text } from '..';
+import {
+  CartFooter,
+  CartItems,
+  CartSection,
+  CartWrapper,
+  CheckoutQuery,
+  Heading,
+  Text,
+} from '..';
 import { getCart } from '../../graphql/cart';
 import { Cart as CartInterface } from '../../interfaces';
 import { formatCurrency } from '../../lib/helpers';

@@ -7,8 +7,16 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   hover?: boolean;
 }
 
-const Button: React.FunctionComponent<Props> = ({ children, basic, hover, ...props }) => {
-  const className = classNames(styles.button, { [styles.basic]: basic, [styles.hover]: hover });
+const Button: React.FunctionComponent<Props> = ({
+  children,
+  basic,
+  hover,
+  ...props
+}) => {
+  const className = classNames(styles.button, {
+    [styles.basic]: basic,
+    [styles.hover]: hover,
+  });
 
   return (
     <button className={className} {...props}>

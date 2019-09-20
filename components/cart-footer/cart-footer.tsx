@@ -23,7 +23,12 @@ const CartFooter: React.FunctionComponent<Props> = ({ totalPrice, webUrl }) => {
         <Button onClick={navigateToCart}>Checkout</Button>
         <Mutation<any> mutation={updateCartOpen}>
           {updateCartOpenMutation => (
-            <Button basic={true} onClick={() => updateCartOpenMutation({ variables: { isOpen: false } })}>
+            <Button
+              basic={true}
+              onClick={() =>
+                updateCartOpenMutation({ variables: { isOpen: false } })
+              }
+            >
               Continue shopping
             </Button>
           )}
