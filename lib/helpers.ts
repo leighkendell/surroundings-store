@@ -1,5 +1,9 @@
 import { ApolloClient } from 'apollo-client';
-import { createCheckout, getCheckoutId, updateCheckoutId } from '../graphql/checkout';
+import {
+  createCheckout,
+  getCheckoutId,
+  updateCheckoutId,
+} from '../graphql/checkout';
 import { Checkout, CheckoutLineItemArg } from '../interfaces';
 
 export const formatCurrency = (currencyCode: string, amount: number) =>
@@ -8,7 +12,8 @@ export const formatCurrency = (currencyCode: string, amount: number) =>
     currency: currencyCode,
   }).format(amount);
 
-export const getTheme = (tags: string[]) => tags.find(tag => tag.includes('theme'));
+export const getTheme = (tags: string[]) =>
+  tags.find(tag => tag.includes('theme'));
 
 export const isBrowser = typeof window !== 'undefined';
 
@@ -21,24 +26,32 @@ export const getUpdatedLineItems = (
   let newItems: CheckoutLineItemArg[] = [];
 
   // Get the current cart contents
-  const currentItems: CheckoutLineItemArg[] = checkout.lineItems.edges.map(item => ({
-    variantId: item.node.variant.id,
-    quantity: item.node.quantity,
-  }));
+  const currentItems: CheckoutLineItemArg[] = checkout.lineItems.edges.map(
+    item => ({
+      variantId: item.node.variant.id,
+      quantity: item.node.quantity,
+    })
+  );
 
   // Check if the item already exists in the cart
-  const existingItem = currentItems.find(item => item.variantId === productVariant);
+  const existingItem = currentItems.find(
+    item => item.variantId === productVariant
+  );
 
   switch (mode) {
     case 'add':
       if (existingItem) {
         // If it does, just update the quantity
         const index = currentItems.indexOf(existingItem);
-        currentItems[index].quantity = currentItems[index].quantity + productQuantity;
+        currentItems[index].quantity =
+          currentItems[index].quantity + productQuantity;
         newItems = [...currentItems];
       } else {
         // If it doesn't, add the new item
-        const newItem = { variantId: productVariant, quantity: productQuantity };
+        const newItem = {
+          variantId: productVariant,
+          quantity: productQuantity,
+        };
         newItems = [newItem, ...currentItems];
       }
       break;
@@ -53,14 +66,18 @@ export const getUpdatedLineItems = (
           currentItems[index].quantity = productQuantity;
           newItems = [...currentItems];
         } else {
-          newItems = currentItems.filter(item => item.variantId !== existingItem.variantId);
+          newItems = currentItems.filter(
+            item => item.variantId !== existingItem.variantId
+          );
         }
       }
       break;
 
     case 'remove':
       if (existingItem) {
-        newItems = currentItems.filter(item => item.variantId !== existingItem.variantId);
+        newItems = currentItems.filter(
+          item => item.variantId !== existingItem.variantId
+        );
       }
       break;
   }
@@ -68,7 +85,10 @@ export const getUpdatedLineItems = (
   return newItems;
 };
 
-export const initCheckout = async (apolloClient: ApolloClient<{}>, reset?: boolean) => {
+export const initCheckout = async (
+  apolloClient: ApolloClient<{}>,
+  reset?: boolean
+) => {
   // If the state of the checkout is being reset
   if (reset) {
     localStorage.removeItem('shopify-checkout-id');

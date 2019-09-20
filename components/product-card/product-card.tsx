@@ -14,7 +14,10 @@ interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
 const ProductCard: React.FunctionComponent<Props> = React.memo(
   React.forwardRef<HTMLAnchorElement, Props>(
-    ({ data: { handle, title, priceRange, images, tags, productType } }, ref) => {
+    (
+      { data: { handle, title, priceRange, images, tags, productType } },
+      ref
+    ) => {
       // State
       const [hover, setHover] = useState(false);
       const [touchmoved, setTouchmoved] = useState(false);
@@ -25,7 +28,9 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
       const [mainImage] = images.edges;
       const theme = getTheme(tags) || 'theme-1';
       const fullWidthImage = productType === 'Music';
-      const imageClasses = classNames(styles.image, { [styles.imagefull]: fullWidthImage });
+      const imageClasses = classNames(styles.image, {
+        [styles.imagefull]: fullWidthImage,
+      });
 
       // Routing
       const url: UrlObject = {
@@ -36,6 +41,7 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
 
       return (
         <Link href={url} as={asUrl}>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a
             className={styles.card}
             style={{ '--theme': `var(--${theme})` }}
@@ -53,7 +59,12 @@ const ProductCard: React.FunctionComponent<Props> = React.memo(
             }}
           >
             <div className={imageClasses}>
-              {mainImage && <Image src={mainImage.node.transformedSrc} alt={mainImage.node.altText || title} />}
+              {mainImage && (
+                <Image
+                  src={mainImage.node.transformedSrc}
+                  alt={mainImage.node.altText || title}
+                />
+              )}
             </div>
             <div className={styles.content}>
               <span className={styles.title}>{title}</span>

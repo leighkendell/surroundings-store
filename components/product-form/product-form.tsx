@@ -1,7 +1,16 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Mutation } from 'react-apollo';
 import ReactGA from 'react-ga';
-import { Button, CheckoutQuery, FormField, FormGroup, Input, InputSelect, Label, Notification } from '..';
+import {
+  Button,
+  CheckoutQuery,
+  FormField,
+  FormGroup,
+  Input,
+  InputSelect,
+  Label,
+  Notification,
+} from '..';
 import { checkoutLineItemsReplace } from '../../graphql/checkout';
 import { Checkout, ProductVariantConnection } from '../../interfaces';
 import { getUpdatedLineItems } from '../../lib/helpers';
@@ -18,7 +27,9 @@ interface FormSubmitParams {
 
 const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
   const [defaultVariant] = variants.edges;
-  const [productVariant, updateProductVariant] = useState(defaultVariant.node.id);
+  const [productVariant, updateProductVariant] = useState(
+    defaultVariant.node.id
+  );
   const [productQuantity, updateProductQuantity] = useState(1);
   const showSelect = variants.edges.length > 1;
 
@@ -35,7 +46,12 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
   const handleFormSubmit = ({ event, mutate, checkout }: FormSubmitParams) => {
     event.preventDefault();
 
-    const newItems = getUpdatedLineItems(checkout, productVariant, productQuantity, 'add');
+    const newItems = getUpdatedLineItems(
+      checkout,
+      productVariant,
+      productQuantity,
+      'add'
+    );
 
     // Update the cart
     mutate({
@@ -58,7 +74,11 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
         return (
           <Mutation<any> mutation={checkoutLineItemsReplace}>
             {(mutate, { loading }) => (
-              <form onSubmit={event => handleFormSubmit({ event, mutate, checkout })}>
+              <form
+                onSubmit={event =>
+                  handleFormSubmit({ event, mutate, checkout })
+                }
+              >
                 <FormGroup>
                   {/* tslint:disable:react-a11y-role-has-required-aria-props */}
                   <FormField hidden={!showSelect}>
@@ -97,7 +117,9 @@ const ProductForm: React.FunctionComponent<Props> = ({ variants }) => {
                   Add to cart
                 </Button>
                 <Notification visible={loading}>
-                  {loading ? 'Adding item to the cart...' : 'Successfully added item to the cart'}
+                  {loading
+                    ? 'Adding item to the cart...'
+                    : 'Successfully added item to the cart'}
                 </Notification>
               </form>
             )}

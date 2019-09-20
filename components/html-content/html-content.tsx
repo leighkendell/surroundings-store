@@ -6,7 +6,10 @@ interface Props {
 }
 
 const HtmlContent: React.FunctionComponent<Props> = ({ children }) => (
-  <div dangerouslySetInnerHTML={{ __html: children }} className={styles.content} />
+  <div
+    dangerouslySetInnerHTML={{ __html: children }}
+    className={styles.content}
+  />
 );
 
 export default HtmlContent;

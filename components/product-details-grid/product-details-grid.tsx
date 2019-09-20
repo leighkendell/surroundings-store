@@ -5,7 +5,10 @@ interface Props {
   theme?: string;
 }
 
-const ProductDetailsGrid: React.FunctionComponent<Props> = ({ children, theme }) => (
+const ProductDetailsGrid: React.FunctionComponent<Props> = ({
+  children,
+  theme,
+}) => (
   <div className={styles.grid} style={{ '--theme': `var(--${theme})` }}>
     {children}
   </div>

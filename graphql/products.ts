@@ -57,7 +57,11 @@ export const collectionByHandle = gql`
                 node {
                   id
                   altText
-                  transformedSrc(maxWidth: 400, scale: 2, preferredContentType: PNG)
+                  transformedSrc(
+                    maxWidth: 400
+                    scale: 2
+                    preferredContentType: PNG
+                  )
                 }
               }
             }

@@ -23,7 +23,11 @@ const ProductCards: React.FunctionComponent<Props> = ({ products }) => {
   return (
     <>
       {trail.map((props, index) => (
-        <AnimatedProductCard key={products[index].node.id} data={products[index].node} style={props} />
+        <AnimatedProductCard
+          key={products[index].node.id}
+          data={products[index].node}
+          style={props}
+        />
       ))}
     </>
   );

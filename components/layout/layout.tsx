@@ -9,7 +9,12 @@ interface Props {
   router: SingletonRouter;
 }
 
-const Layout: React.FunctionComponent<Props> = ({ children, pageTitle, pageDescription, router }) => {
+const Layout: React.FunctionComponent<Props> = ({
+  children,
+  pageTitle,
+  pageDescription,
+  router,
+}) => {
   const rootUrl = 'https://store.surroundings.band';
   const title = `${pageTitle} • Surroundings Store`;
   const url = `${rootUrl}${router.asPath !== '/' ? router.asPath : ''}`;

@@ -7,7 +7,10 @@ interface Props {
   secondHeading: string;
 }
 
-const HeaderTextGroup: React.FunctionComponent<Props> = ({ firstHeading, secondHeading }) => (
+const HeaderTextGroup: React.FunctionComponent<Props> = ({
+  firstHeading,
+  secondHeading,
+}) => (
   <header className={styles.header}>
     <Heading type="h1">{firstHeading}</Heading>
     <Heading type="h2">{secondHeading}</Heading>

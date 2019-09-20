@@ -18,7 +18,9 @@ const ProductImage: React.FunctionComponent<Props> = ({ images }) => {
       transform: 'translate3d(0, 40px, 0) scale(0.95)',
       opacity: 0,
     },
-    transform: imageReady ? 'translate3d(0, 0, 0) scale(1)' : 'translate3d(0, 40px, 0) scale(0.95)',
+    transform: imageReady
+      ? 'translate3d(0, 0, 0) scale(1)'
+      : 'translate3d(0, 40px, 0) scale(0.95)',
     opacity: imageReady ? 1 : 0,
   });
 

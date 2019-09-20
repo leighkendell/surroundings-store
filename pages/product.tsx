@@ -32,7 +32,11 @@ interface Data {
   productByHandle: ProductInterface;
 }
 
-const errorMessage = <Error>We're having issues loading this product. Please try again later.</Error>;
+const errorMessage = (
+  <Error>
+    We're having issues loading this product. Please try again later.
+  </Error>
+);
 
 const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
   const { handle } = router.query;
@@ -51,7 +55,14 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
 
           if (data && data.productByHandle) {
             const product = data.productByHandle;
-            const { title, descriptionHtml, images, variants, priceRange, tags } = product;
+            const {
+              title,
+              descriptionHtml,
+              images,
+              variants,
+              priceRange,
+              tags,
+            } = product;
             const { amount, currencyCode } = priceRange.minVariantPrice;
             const price = formatCurrency(currencyCode, amount);
             const theme = getTheme(tags);
@@ -67,7 +78,10 @@ const ProductPage: React.FunctionComponent<Props> = React.memo(({ router }) => {
                       <ProductImage images={images} />
                     </ProductDetailsGridItem>
                     <ProductDetailsGridItem slideIn={true}>
-                      <HeaderTextGroup firstHeading={title} secondHeading={price} />
+                      <HeaderTextGroup
+                        firstHeading={title}
+                        secondHeading={price}
+                      />
                       <HtmlContent>{descriptionHtml}</HtmlContent>
                       <ProductForm variants={variants} />
                     </ProductDetailsGridItem>

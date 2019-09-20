@@ -6,7 +6,11 @@ const currentYear = new Date().getFullYear();
 
 const Footer: React.FunctionComponent = React.memo(() => (
   <footer role="contentinfo" className={styles.footer}>
-    <Wrapper additionalClass={styles.wrapper} collapseBottom={true} collapseTop={true}>
+    <Wrapper
+      additionalClass={styles.wrapper}
+      collapseBottom={true}
+      collapseTop={true}
+    >
       <strong>&copy; {currentYear} Surroundings</strong>
       <SocialIcons />
     </Wrapper>

@@ -5,7 +5,10 @@ interface Props extends React.SelectHTMLAttributes<HTMLSelectElement> {
   children: ReactNode;
 }
 
-const InputSelect: React.FunctionComponent<Props> = ({ children, ...props }) => (
+const InputSelect: React.FunctionComponent<Props> = ({
+  children,
+  ...props
+}) => (
   <select className={styles.select} {...props}>
     {children}
   </select>

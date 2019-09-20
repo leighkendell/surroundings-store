@@ -28,7 +28,10 @@ class ErrorBoundary extends React.Component {
       return (
         <Section variation="secondary">
           <Error>
-            <Text>Oh no, something went wrong. You can try reloading this page or tell us about what happened.</Text>
+            <Text>
+              Oh no, something went wrong. You can try reloading this page or
+              tell us about what happened.
+            </Text>
             <Button onClick={this.handleClick}>Report feedback</Button>
           </Error>
         </Section>

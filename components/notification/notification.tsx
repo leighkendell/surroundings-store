@@ -10,7 +10,10 @@ interface Props {
   visible: boolean;
 }
 
-const Notification: React.FunctionComponent<Props> = ({ children, visible }) => {
+const Notification: React.FunctionComponent<Props> = ({
+  children,
+  visible,
+}) => {
   const transitions = useTransition<{}, {}>(visible, null, {
     from: { transform: `translate3d(0, 150%, 0)` },
     enter: { transform: `translate3d(0, 0, 0)` },
@@ -24,7 +27,11 @@ const Notification: React.FunctionComponent<Props> = ({ children, visible }) => 
       transitions.map(
         ({ item, key, props }) =>
           item && (
-            <animated.div className={styles.notification} key={key} style={props}>
+            <animated.div
+              className={styles.notification}
+              key={key}
+              style={props}
+            >
               {children}
             </animated.div>
           )

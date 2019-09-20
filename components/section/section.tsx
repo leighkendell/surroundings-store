@@ -7,9 +7,18 @@ interface Props {
   angled?: boolean;
 }
 
-const Section: React.FunctionComponent<Props> = ({ children, variation, angled }) => {
-  const className = classNames(styles.section, { [styles.sectionAngled]: angled });
-  const textColor = variation === 'dark' || variation === 'primary' ? 'var(--light)' : 'var(--dark)';
+const Section: React.FunctionComponent<Props> = ({
+  children,
+  variation,
+  angled,
+}) => {
+  const className = classNames(styles.section, {
+    [styles.sectionAngled]: angled,
+  });
+  const textColor =
+    variation === 'dark' || variation === 'primary'
+      ? 'var(--light)'
+      : 'var(--dark)';
   const inlineStyles: CSSProperties = {
     '--background': `var(--${variation})`,
     '--color': textColor,

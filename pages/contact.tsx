@@ -9,7 +9,10 @@ const ContactPage: React.FunctionComponent = () => {
         <Wrapper collapseTop={true}>
           <Text>
             For enquiries about orders please email{' '}
-            <a href="mailto:contact@surroundings.band">contact@surroundings.band</a>.
+            <a href="mailto:contact@surroundings.band">
+              contact@surroundings.band
+            </a>
+            .
           </Text>
         </Wrapper>
       </Section>
