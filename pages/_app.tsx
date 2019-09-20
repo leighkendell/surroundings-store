@@ -40,7 +40,7 @@ const browserError = (
 );
 
 class MainApp extends App<MainAppProps> {
-  public static async getInitialProps({ Component, ctx }) {
+  public static async getInitialProps({ Component, ctx }: any) {
     let pageProps = {};
 
     if (Component.getInitialProps) {

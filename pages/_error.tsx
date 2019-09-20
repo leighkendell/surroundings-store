@@ -6,14 +6,18 @@ interface Props {
 }
 
 class Error extends React.Component<Props> {
-  public static getInitialProps({ res }) {
+  public static getInitialProps({ res }: any) {
     const statusCode = res ? res.statusCode : null;
     return { statusCode };
   }
 
   public render() {
     const { statusCode } = this.props;
-    const title = statusCode ? (statusCode === 404 ? 'Not found' : 'Error') : 'Error';
+    const title = statusCode
+      ? statusCode === 404
+        ? 'Not found'
+        : 'Error'
+      : 'Error';
     const message = statusCode
       ? statusCode === 404
         ? `Oops, you just hit a page that doesn't exist.`

@@ -40,6 +40,8 @@ const CheckoutQuery: React.FunctionComponent<Props> = ({ children }) => {
                 if (data) {
                   return children(data.node);
                 }
+
+                return null;
               }}
             </Query>
           );

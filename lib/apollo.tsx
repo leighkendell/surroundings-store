@@ -8,7 +8,7 @@ import fetch from 'isomorphic-unfetch';
 import gql from 'graphql-tag';
 import { isBrowser } from './helpers';
 
-let apolloClient = null;
+let apolloClient: any = null;
 
 /**
  * Creates and provides the apolloContext
@@ -18,11 +18,11 @@ let apolloClient = null;
  * @param {Object} [config]
  * @param {Boolean} [config.ssr=true]
  */
-export function withApollo(PageComponent, { ssr = true } = {}) {
-  const WithApollo = ({ apolloClient, apolloState, ...pageProps }) => {
+export function withApollo(PageComponent: any, { ssr = true } = {}) {
+  const WithApollo = ({ apolloClient, apolloState, ...pageProps }: any) => {
     const client = useMemo(
       () => apolloClient || initApolloClient(apolloState),
-      []
+      [apolloClient, apolloState]
     );
     return (
       <ApolloProvider client={client}>
@@ -44,7 +44,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
   }
 
   if (ssr || PageComponent.getInitialProps) {
-    WithApollo.getInitialProps = async ctx => {
+    WithApollo.getInitialProps = async (ctx: any) => {
       const { AppTree } = ctx;
 
       // Initialize ApolloClient, add it to the ctx object so
@@ -109,7 +109,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
  * Creates or reuses apollo client in the browser.
  * @param  {Object} initialState
  */
-function initApolloClient(initialState?) {
+function initApolloClient(initialState?: any) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (typeof window === 'undefined') {
